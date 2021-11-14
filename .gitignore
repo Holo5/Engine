@@ -1,6 +1,6 @@
 /node_modules/
 .idea/*
 dist/*
-.cache/*
+.parcel-cache/*
 yarn.lock
 yarn-error.log
