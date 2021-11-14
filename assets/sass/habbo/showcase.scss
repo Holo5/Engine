@@ -1,0 +1,34 @@
+$elementSize: 100px;
+
+html, body {
+  height: 100%;
+}
+
+body {
+  background: linear-gradient(#0c5a7f, #0c3a65);
+  font-family: 'Ubuntu Condensed', sans-serif;
+  color: white;
+  margin: 0;
+  padding: 0;
+}
+
+#main-showcase {
+  padding: 5px;
+  min-height: 100%;
+
+  .container {
+    display: flex;
+    flex-direction: row;
+
+    .element {
+      height: $elementSize;
+      width: $elementSize;
+      background-color: rgba(0, 0, 0, 0.3);
+      border-radius: 5px;
+      margin: 5px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  }
+}

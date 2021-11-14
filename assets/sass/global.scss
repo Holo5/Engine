@@ -1,0 +1,14 @@
+@import "keyframes";
+@import "mixins";
+@import "tricks";
+@import "sprites";
+
+@import "habbo/habbo";
+
+.prevent-select {
+  -webkit-tap-highlight-color: transparent;
+
+  &:focus {
+    outline: none !important;
+  }
+}

@@ -1,0 +1,94 @@
+@import "variables";
+
+@mixin full-width() {
+  width: 100%;
+  float: left;
+  clear: both;
+}
+
+@mixin inner-width($max-width: 1200px, $transition: true) {
+  @include full-width;
+
+  max-width: $max-width;
+  margin-left: calc(50% - #{$max-width} / 2);
+
+  @if ($transition == true) {
+    transition: 200ms ease-in-out padding;
+  }
+
+  @media screen and (max-width: calc(#{$max-width} + 20px * 2)) {
+    margin-left: 0;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+}
+
+@mixin blur-background($size: 2px) {
+  //@supports (-webkit-backdrop-filter: none) or (backdrop-filter: none) {
+  //  -webkit-backdrop-filter: blur($size);
+  //  backdrop-filter: blur($size);
+  //}
+}
+
+@mixin condensed-font {
+  font-family: "Habbofont", "Ubuntu Condensed", Arial, Helvetica, sans-serif;
+}
+
+@mixin itf-icon($width, $height, $x, $y) {
+  background-image: url(#{$interface-sprite-url});
+  background-repeat: no-repeat;
+  background-position: $x $y;
+  width: $width;
+  height: $height;
+}
+
+@mixin spr-icon($x, $y, $defaultSize: true) {
+  background-image: url(#{$sprite-icons-url});
+  background-repeat: no-repeat;
+  background-position: $x $y;
+
+  @if ($defaultSize) {
+    width: 18px;
+    height: 18px;
+  }
+}
+
+@mixin chat-bubble(
+  $image-name,
+  $caption-width: 29px,
+  $right-corner-width: 8px,
+  $bubble-height: 25px,
+  $padding-top: 0px,
+  $override-color: false,
+  $padding-bottom: 0px,
+) {
+  $image: '#{$bubble-chat-asset}#{$image-name}_chat_bubble.png';
+
+  .avatar-part,
+  .content,
+  .right-corner {
+    background-image: url(#{$image});
+    height: $bubble-height;
+    padding-top: $padding-top;
+    padding-bottom: $padding-bottom;
+  }
+
+  .avatar-part {
+    width: $caption-width;
+  }
+
+  .content {
+    line-height: $bubble-height;
+  }
+
+  .right-corner {
+    width: $right-corner-width;
+    background-position: right bottom;
+  }
+
+  @if ($override-color != false) {
+    .override-color {
+      color: $override-color !important;
+    }
+  }
+}

@@ -1,0 +1,166 @@
+#left-panel {
+  position: fixed;
+  width: 400px;
+  height: 100%;
+  margin-left: -400px;
+  background-color: rgba(0, 0, 0, 0.85);
+  z-index: 10;
+  transition-duration: 0.1s;
+  transition-timing-function: ease-in;
+
+  @include respond-to("small") {
+    width: 100%;
+    margin-left: -100%;
+  }
+
+  &.open {
+    margin-left: 0px;
+  }
+
+  .content {
+    margin: 10px;
+  }
+}
+
+#bar-top {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  position: fixed;
+  z-index: 10;
+
+  .top-icons {
+    align-self: flex-end;
+    margin: 10px 10px 0px 10px;
+  }
+
+  .left-panel-button {
+    cursor: pointer;
+  }
+
+  .money-frame {
+    display: flex;
+    justify-content: space-around;
+    justify-self: center;
+    width: 350px;
+    padding: 3px 5px;
+    margin-top: 5px;
+    height: 20px;
+    border-radius: 5px;
+    background-color: rgba(0, 0, 0, 0.3);
+    font-size: 14px;
+
+    @include respond-to("small") {
+      width: 250px;
+    }
+
+    span {
+      display: flex;
+      align-items: center;
+    }
+  }
+}
+
+#bar-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  align-self: flex-end;
+  height: 40px;
+  width: 100%;
+  position: fixed;
+  z-index: 20;
+
+  @include respond-to("small") {
+    background-color: rgba(0, 0, 0, 0.3);
+    height: 100px;
+    flex-direction: column;
+  }
+
+  #user-menu {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    width: 270px;
+    height: 60px;
+    margin-bottom: 18px;
+
+    @include respond-to("small") {
+      margin-bottom: 0px;
+    }
+
+    #perso-button {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-position: -176px -676px;
+      width: 54px;
+      height: 54px;
+      cursor: pointer;
+    }
+
+    .menu-button  {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+    }
+  }
+
+  #user-logout {
+    width: 200px;
+    height: 120px;
+
+    @include respond-to("small") {
+      display: none;
+    }
+  }
+
+  #speaking-form {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 30px;
+    margin-bottom: 10px;
+
+    input {
+      margin-left: 10px;
+      padding: 5px;
+      height: 30px;
+      width: 400px !important;
+      font-size: 14px;
+      border-radius: 5px;
+      border: none;
+      font-family: "Ubuntu", "Trebuchet MS", "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", Tahoma, sans-serif;
+
+      @include respond-to("medium") {
+        width: 300px !important;
+      }
+
+      @include respond-to("small") {
+        width: 240px !important;
+      }
+
+      &:focus {
+        outline: none;
+      }
+    }
+
+    .send-message-button {
+      width: 40px;
+      padding: 5px;
+      cursor: pointer;
+
+      .habbicon {
+        display: inline-block;
+
+        &.animate {
+          animation-delay: 1s;
+          animation: arrow-keyframes;
+          animation-duration: 7s;
+          animation-iteration-count: infinite;
+        }
+      }
+    }
+  }
+}

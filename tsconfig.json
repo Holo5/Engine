@@ -1,0 +1,41 @@
+{
+  "compilerOptions": {
+    "noImplicitAny": true,
+    "target": "ES2016",
+    "module": "commonjs",
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "sourceMap": true,
+    "noEmitHelpers": false,
+    "moduleResolution": "node",
+    "paths": {
+      "mini-signals": [
+        "node_modules/resource-loader/typings/mini-signals.d.ts"
+      ]
+    },
+    "baseUrl": "./"
+  },
+  "rules": {
+    "object-literal-sort-keys": false,
+    "quotemark": true,
+    "semicolon": true,
+    "array-type": [true, "array"],
+    "arrow-return-shorthand": [true, "multiline"],
+    "switch-final-break": [true, "always"],
+    "class-name": true,
+    "arrow-parens": [true, "ban-single-arg-parens"],
+    "indent": [true, "spaces", 4],
+    "newline-before-return": true,
+    "no-consecutive-blank-lines": true,
+    "variable-name": [true, "check-format", "allow-leading-underscore", "allow-pascal-case"],
+    "radix": false,
+    "ordered-imports": [
+      true,
+      {
+        "import-sources-order": "lowercase-last",
+        "named-imports-order": "lowercase-first"
+      }
+    ],
+    "no-console": false
+  },
+}

@@ -1,0 +1,62 @@
+input.habbo-login  {
+  display: inline;
+  box-shadow: 0 3px 0 1px rgba(0,0,0,.3);
+  border-radius: 5px;
+  border: 2px solid #2a9cde;
+  line-height: 1.2px;
+  font-size: 16px;
+  margin-bottom: 10px;
+  font-family: "Ubuntu", "Trebuchet MS", "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", Tahoma, sans-serif;
+  font-weight: 400;
+
+  &:focus {
+    outline: none;
+  }
+
+  &[type=text], &[type=password], &[type=email] {
+    width: 220px;
+    padding: 5px 10px;
+    background-color: #ccd8df;
+    color: rgb(68, 68, 68);
+
+  &:focus {
+      background-color: white;
+    }
+  }
+
+  &[type=submit] {
+    background-color: #0f7dbc;
+    color: #fff;
+    padding: 20px 24px;
+    text-transform: uppercase;
+    cursor: pointer;
+
+    &:hover {
+      background-color: #2a9cde;
+      border-color: #53bdf9;
+    }
+
+    &:active {
+      margin-top: 2px;
+      box-shadow: 0 1px 0 1px rgba(0,0,0,.3);
+      background-color: #084d74;
+      border-color: #1e7b9e;
+    }
+
+    &.big-green {
+      padding-left: 48px !important;
+      padding-right: 48px !important;
+      background-color: #00813e !important;
+      border-color: #8eda55;
+
+      &:active {
+        background-color: #006743;
+        border-color: #5abb37;
+      }
+    }
+  }
+}
+.login-button.habbo-login {
+  height: 45px;
+  display: inline-block;
+}

@@ -1,0 +1,32 @@
+<!DOCTYPE>
+<html>
+
+<head>
+  <title>Client ~ Holo5</title>
+  <meta content="width=device-width, initial-scale=1.0, shrink-to-fit=no" name="viewport">
+  <meta content="ie=edge" http-equiv="X-UA-Compatible">
+  <link href="../assets/sass/perfect-scrollbar.css" rel="stylesheet">
+  <meta charset="UTF-8">
+  <style>
+      body, html {
+          margin: 0;
+          padding: 0;
+      }
+
+      * {
+          image-rendering: crisp-edges;
+          image-rendering: pixelated;
+      }
+  </style>
+</head>
+
+<body>
+<script>
+  document.body.style.zoom = `${1 / window.devicePixelRatio * 100}%`;
+</script>
+<div id="game" style="display: flex">
+  <App></App>
+</div>
+</body>
+<script src="main.ts"></script>
+</html>

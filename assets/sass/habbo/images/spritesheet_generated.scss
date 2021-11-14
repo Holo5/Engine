@@ -1,0 +1,672 @@
+.h5 {
+    background: url('habbo/images/./sprite_generated.png');
+    font-style: normal;
+
+
+    &.sunny-blue-white {
+        background-position: 0 0;
+        width: 150px;
+        height: 150px;
+    }
+
+    &.sunny-blue {
+        background-position: -150px 0;
+        width: 143px;
+        height: 139px;
+    }
+
+    &.clouds-htl-view-full {
+        background-position: 0 -150px;
+        width: 116px;
+        height: 114px;
+    }
+
+    &.random-room-big {
+        background-position: -116px -150px;
+        width: 102px;
+        height: 98px;
+    }
+
+    &.money-gorgeous {
+        background-position: -293px 0;
+        width: 99px;
+        height: 98px;
+    }
+
+    &.purchasing-icon {
+        background-position: -293px -98px;
+        width: 93px;
+        height: 102px;
+    }
+
+    &.money-big {
+        background-position: 0 -264px;
+        width: 97px;
+        height: 97px;
+    }
+
+    &.money-extra {
+        background-position: -97px -264px;
+        width: 97px;
+        height: 97px;
+    }
+
+    &.money-medium {
+        background-position: -194px -264px;
+        width: 97px;
+        height: 97px;
+    }
+
+    &.money-small {
+        background-position: -291px -264px;
+        width: 97px;
+        height: 97px;
+    }
+
+    &.money-tiny {
+        background-position: -392px 0;
+        width: 97px;
+        height: 97px;
+    }
+
+    &.huge-blue-circle {
+        background-position: -392px -97px;
+        width: 95px;
+        height: 93px;
+    }
+
+    &.big-clubs-reduction {
+        background-position: -392px -190px;
+        width: 92px;
+        height: 94px;
+    }
+
+    &.gift-boxes {
+        background-position: 0 -361px;
+        width: 90px;
+        height: 96px;
+    }
+
+    &.clubs-reductions {
+        background-position: -90px -361px;
+        width: 93px;
+        height: 90px;
+    }
+
+    &.big-shop-logo {
+        background-position: -218px -150px;
+        width: 74px;
+        height: 90px;
+    }
+
+    &.sulake-logo {
+        background-position: -392px -284px;
+        width: 88px;
+        height: 75px;
+    }
+
+    &.clouds-htl-view {
+        background-position: -183px -361px;
+        width: 86px;
+        height: 70px;
+    }
+
+    &.builder-club-logo {
+        background-position: -293px -200px;
+        width: 98px;
+        height: 58px;
+    }
+
+    &.random-room-small {
+        background-position: -269px -361px;
+        width: 72px;
+        height: 67px;
+    }
+
+    &.big-blue-spinner {
+        background-position: -341px -361px;
+        width: 67px;
+        height: 64px;
+    }
+
+    &.blue-circle-white-border {
+        background-position: -489px 0;
+        width: 64px;
+        height: 65px;
+    }
+
+    &.shop-icon-white {
+        background-position: -489px -65px;
+        width: 58px;
+        height: 65px;
+    }
+
+    &.navigator-icon-white {
+        background-position: -489px -130px;
+        width: 64px;
+        height: 57px;
+    }
+
+    &.maronn-circle {
+        background-position: -489px -187px;
+        width: 58px;
+        height: 60px;
+    }
+
+    &.unknown-user-icon {
+        background-position: -489px -247px;
+        width: 54px;
+        height: 61px;
+    }
+
+    &.community-icon-white {
+        background-position: -489px -308px;
+        width: 50px;
+        height: 64px;
+    }
+
+    &.inventory-icon-white {
+        background-position: -489px -372px;
+        width: 52px;
+        height: 61px;
+    }
+
+    &.messenger-icon-white {
+        background-position: -408px -361px;
+        width: 50px;
+        height: 63px;
+    }
+
+    &.tiny-holo-logo-2 {
+        background-position: 0 -457px;
+        width: 82px;
+        height: 36px;
+    }
+
+    &.builder-shop {
+        background-position: 0 -493px;
+        width: 54px;
+        height: 54px;
+    }
+
+    &.big-blue-circle-darker {
+        background-position: -54px -493px;
+        width: 50px;
+        height: 52px;
+    }
+
+    &.big-blue-circle {
+        background-position: -104px -493px;
+        width: 50px;
+        height: 52px;
+    }
+
+    &.blue-hole-darker {
+        background-position: -154px -493px;
+        width: 50px;
+        height: 52px;
+    }
+
+    &.shop-icon {
+        background-position: -553px 0;
+        width: 48px;
+        height: 54px;
+    }
+
+    &.inventory-badge {
+        background-position: -204px -493px;
+        width: 50px;
+        height: 50px;
+    }
+
+    &.inventory-furniture {
+        background-position: -254px -493px;
+        width: 50px;
+        height: 50px;
+    }
+
+    &.navigator-icon {
+        background-position: -304px -493px;
+        width: 54px;
+        height: 46px;
+    }
+
+    &.biggest-green-tick {
+        background-position: -553px -54px;
+        width: 44px;
+        height: 50px;
+    }
+
+    &.inventory-icon {
+        background-position: -553px -104px;
+        width: 42px;
+        height: 50px;
+    }
+
+    &.community-icon {
+        background-position: -553px -154px;
+        width: 40px;
+        height: 52px;
+    }
+
+    &.messenger-icon {
+        background-position: -553px -206px;
+        width: 40px;
+        height: 52px;
+    }
+
+    &.style-icon {
+        background-position: -553px -258px;
+        width: 40px;
+        height: 52px;
+    }
+
+    &.blue-hole {
+        background-position: -553px -310px;
+        width: 44px;
+        height: 46px;
+    }
+
+    &.blue-circle-darker {
+        background-position: -553px -356px;
+        width: 43px;
+        height: 42px;
+    }
+
+    &.blue-circle {
+        background-position: -553px -398px;
+        width: 43px;
+        height: 42px;
+    }
+
+    &.rooms-icon {
+        background-position: -553px -440px;
+        width: 48px;
+        height: 34px;
+    }
+
+    &.green-left-arrow-darker {
+        background-position: -553px -474px;
+        width: 36px;
+        height: 41px;
+    }
+
+    &.green-left-arrow {
+        background-position: -358px -493px;
+        width: 36px;
+        height: 41px;
+    }
+
+    &.green-right-arrow-darker {
+        background-position: -394px -493px;
+        width: 36px;
+        height: 41px;
+    }
+
+    &.green-right-arrow {
+        background-position: -430px -493px;
+        width: 36px;
+        height: 41px;
+    }
+
+    &.medium-hc-logo {
+        background-position: 0 -547px;
+        width: 34px;
+        height: 42px;
+    }
+
+    &.purse-icon {
+        background-position: -82px -457px;
+        width: 39px;
+        height: 36px;
+    }
+
+    &.habo_interface_sprite_26 {
+        background-position: -553px -515px;
+        width: 40px;
+        height: 32px;
+    }
+
+    &.small-blue-spinner {
+        background-position: -121px -457px;
+        width: 33px;
+        height: 32px;
+    }
+
+    &.little-green-circle {
+        background-position: -458px -361px;
+        width: 30px;
+        height: 30px;
+    }
+
+    &.white-left-arrow {
+        background-position: -466px -493px;
+        width: 21px;
+        height: 38px;
+    }
+
+    &.white-right-arrow {
+        background-position: -487px -493px;
+        width: 21px;
+        height: 38px;
+    }
+
+    &.hamburger-menu {
+        background-position: -458px -391px;
+        width: 27px;
+        height: 27px;
+    }
+
+    &.h-letter {
+        background-position: -154px -457px;
+        width: 26px;
+        height: 28px;
+    }
+
+    &.habbo-interface-read-more {
+        background-position: -180px -457px;
+        width: 26px;
+        height: 28px;
+    }
+
+    &.big-red-cross {
+        background-position: -206px -457px;
+        width: 26px;
+        height: 27px;
+    }
+
+    &.add-style-icon {
+        background-position: -508px -493px;
+        width: 24px;
+        height: 28px;
+    }
+
+    &.favorite-icon {
+        background-position: -489px -433px;
+        width: 26px;
+        height: 24px;
+    }
+
+    &.big-red-tick {
+        background-position: -232px -457px;
+        width: 23px;
+        height: 27px;
+    }
+
+    &.habbo-icon {
+        background-position: -255px -457px;
+        width: 22px;
+        height: 26px;
+    }
+
+    &.blue-double-arrow {
+        background-position: -515px -433px;
+        width: 24px;
+        height: 22px;
+    }
+
+    &.little-yellow-star {
+        background-position: -277px -457px;
+        width: 24px;
+        height: 22px;
+    }
+
+    &.top-icon-white {
+        background-position: -34px -547px;
+        width: 22px;
+        height: 24px;
+    }
+
+    &.yellow-double-arrow {
+        background-position: -301px -457px;
+        width: 24px;
+        height: 22px;
+    }
+
+    &.win-icon-white {
+        background-position: -532px -493px;
+        width: 21px;
+        height: 24px;
+    }
+
+    &.exclamation-icon {
+        background-position: -539px -308px;
+        width: 11px;
+        height: 44px;
+    }
+
+    &.dancing-icon {
+        background-position: -56px -547px;
+        width: 18px;
+        height: 24px;
+    }
+
+    &.credits-icon {
+        background-position: -183px -431px;
+        width: 20px;
+        height: 20px;
+    }
+
+    &.duckets-icon {
+        background-position: -203px -431px;
+        width: 20px;
+        height: 20px;
+    }
+
+    &.little-hc-icon {
+        background-position: -223px -431px;
+        width: 20px;
+        height: 20px;
+    }
+
+    &.money-icon-darkest {
+        background-position: -243px -431px;
+        width: 20px;
+        height: 20px;
+    }
+
+    &.money-icon-disabled {
+        background-position: -263px -431px;
+        width: 20px;
+        height: 20px;
+    }
+
+    &.money-icon {
+        background-position: -283px -431px;
+        width: 20px;
+        height: 20px;
+    }
+
+    &.home-icon-darkest {
+        background-position: -303px -431px;
+        width: 21px;
+        height: 19px;
+    }
+
+    &.home-icon-disabled {
+        background-position: -324px -431px;
+        width: 21px;
+        height: 19px;
+    }
+
+    &.home-icon {
+        background-position: -345px -431px;
+        width: 21px;
+        height: 19px;
+    }
+
+    &.user-icon-darkest {
+        background-position: -325px -457px;
+        width: 19px;
+        height: 20px;
+    }
+
+    &.user-icon-disabled {
+        background-position: -344px -457px;
+        width: 19px;
+        height: 20px;
+    }
+
+    &.user-icon-white {
+        background-position: -363px -457px;
+        width: 19px;
+        height: 20px;
+    }
+
+    &.user-icon {
+        background-position: -382px -457px;
+        width: 19px;
+        height: 20px;
+    }
+
+    &.diamonds-icon {
+        background-position: -366px -431px;
+        width: 19px;
+        height: 19px;
+    }
+
+    &.little-builder-icon {
+        background-position: -385px -431px;
+        width: 20px;
+        height: 18px;
+    }
+
+    &.search-icon-black {
+        background-position: -401px -457px;
+        width: 18px;
+        height: 20px;
+    }
+
+    &.arrow-bottom-blue-glow {
+        background-position: -116px -248px;
+        width: 22px;
+        height: 16px;
+    }
+
+    &.help-icon-disabled {
+        background-position: -405px -431px;
+        width: 19px;
+        height: 18px;
+    }
+
+    &.help-icon-white {
+        background-position: -424px -431px;
+        width: 19px;
+        height: 18px;
+    }
+
+    &.help-icon {
+        background-position: -443px -431px;
+        width: 19px;
+        height: 18px;
+    }
+
+    &.info-icon-darkest {
+        background-position: -462px -431px;
+        width: 19px;
+        height: 18px;
+    }
+
+    &.info-icon-disabled {
+        background-position: -419px -457px;
+        width: 19px;
+        height: 18px;
+    }
+
+    &.info-icon-white {
+        background-position: -438px -457px;
+        width: 19px;
+        height: 18px;
+    }
+
+    &.info-icon {
+        background-position: -457px -457px;
+        width: 19px;
+        height: 18px;
+    }
+
+    &.logout-icon-white {
+        background-position: -476px -457px;
+        width: 19px;
+        height: 18px;
+    }
+
+    &.logout-icon {
+        background-position: -495px -457px;
+        width: 19px;
+        height: 18px;
+    }
+
+    &.settings-icon-disabled {
+        background-position: -514px -457px;
+        width: 19px;
+        height: 18px;
+    }
+
+    &.settings-icon-white {
+        background-position: -533px -457px;
+        width: 19px;
+        height: 18px;
+    }
+
+    &.settings-icon {
+        background-position: -74px -547px;
+        width: 19px;
+        height: 18px;
+    }
+
+    &.black-cross-icon {
+        background-position: -93px -547px;
+        width: 18px;
+        height: 18px;
+    }
+
+    &.key-icon-disabled {
+        background-position: -111px -547px;
+        width: 18px;
+        height: 17px;
+    }
+
+    &.key-icon-white {
+        background-position: -129px -547px;
+        width: 18px;
+        height: 17px;
+    }
+
+    &.little-h-logo {
+        background-position: -138px -248px;
+        width: 17px;
+        height: 16px;
+    }
+
+    &.unzoom-icon-black {
+        background-position: -155px -248px;
+        width: 16px;
+        height: 14px;
+    }
+
+    &.zoom-icon-black {
+        background-position: -171px -248px;
+        width: 16px;
+        height: 14px;
+    }
+
+    &.invisible-icon {
+        background-position: -150px -139px;
+        width: 20px;
+        height: 11px;
+    }
+
+    &.visible-icon {
+        background-position: -170px -139px;
+        width: 20px;
+        height: 11px;
+    }
+
+    &.white-bottom-arrow {
+        background-position: -190px -139px;
+        width: 19px;
+        height: 10px;
+    }
+
+}

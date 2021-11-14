@@ -1,0 +1,10 @@
+@keyframes loading-circle-rotate {
+  100% { background-position: -288px; }
+}
+
+@keyframes arrow-keyframes {
+  0% { margin-left: 0px; opacity: 1; }
+  5% { margin-left: 20px; opacity: 0; }
+  6% { margin-left: -20px; opacity: 0; }
+  11% { margin-left: 0px; opacity: 1; }
+}

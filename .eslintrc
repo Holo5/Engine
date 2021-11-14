@@ -1,0 +1,42 @@
+{
+  "root": true,
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "project": "./tsconfig.json"
+  },
+  "plugins": [
+    "@typescript-eslint"
+  ],
+  "env": {
+    "browser": true
+  },
+  "extends": ["airbnb-typescript/base"],
+  "rules": {
+    "indent": ["error", 4, { "SwitchCase": 1 }],
+    "@typescript-eslint/indent": ["error", 4],
+    "linebreak-style": [0, "error", "windows"],
+    "import/prefer-default-export": "off",
+    "object-curly-newline": "off",
+    "lines-between-class-members": "off",
+    "@typescript-eslint/lines-between-class-members": "off",
+    "no-console": "off",
+    "no-underscore-dangle": "off",
+    "import/no-cycle": "off",
+    // I recommend turning this on when you are ready to refactor, can improve performance a lot
+    "radix": ["error", "as-needed"],
+    "class-methods-use-this": "off",
+    "no-plusplus": "off",
+    "max-len": [0, 120],
+    "no-param-reassign": [2, {"props": false}],
+    "no-bitwise": "off",
+    "no-mixed-operators": "off",
+    "no-unused-vars": "off",
+    "@typescript-eslint/no-unused-vars": ["off"],
+    "prefer-destructuring": "off",
+    "no-multi-assign": "off",
+    "space-before-function-paren": "off",
+    "func-call-spacing": "off",
+    "import/extensions": "off",
+    "import/no-extraneous-dependencies": "off"
+  }
+}

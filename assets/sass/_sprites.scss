@@ -1,0 +1,22 @@
+.habint {
+  display: inline-block;
+  font-style: normal;
+  background-image: url("../images/interface/habo_interface_sprite.png");
+
+  &.logo-h {
+    background-position: 330px 190px;
+    width: 60px;
+    height: 60px;
+    cursor: pointer;
+  }
+}
+
+.loading-circle {
+  width: 32px;
+  height: 34px;
+  display: inline-block;
+  opacity: 0.7;
+  align-self: center;
+  background: url("../images/interface/circle-loader.png") left center;
+  animation: loading-circle-rotate 0.5s steps(9) infinite;
+}

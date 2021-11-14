@@ -1,0 +1,16 @@
+@import "images/spritesheet_generated";
+
+.h5 {
+
+  &.btn {
+    pointer-events: all;
+    cursor: pointer;
+  }
+
+  &.in-back {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+}
