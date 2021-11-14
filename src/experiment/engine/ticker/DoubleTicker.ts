@@ -9,7 +9,7 @@ export class DoubleTicker{
     private displayTickCallback: () => void;
 
     constructor(maxAnimationRate: number, maxDisplayRate: number) {
-        this.intervalWorker = new Worker('IntervalWorker.js');
+        this.intervalWorker = new Worker(new URL('IntervalWorker.js', import.meta.url), {type: "module"});
 
         this.updateMaxAnimationRate(maxAnimationRate);
         this.updateMaxDisplayRate(maxDisplayRate);
