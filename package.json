@@ -30,7 +30,7 @@
   },
   "dependencies": {
     "@holo5/hotelview-intl": "^0.0.4",
-    "@holo5/roombuilder": "^0.4.1",
+    "@holo5/roombuilder": "0.4.2",
     "@yaireo/console-colors": "^1.1.0",
     "bytebuffer": "^5.0.1",
     "core-js": "3",

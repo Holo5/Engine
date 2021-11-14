@@ -12,6 +12,7 @@ export const Configuration: IConfiguration = {
     },
     images: {
         imageDomain: 'https://assets.holo5.co/',
+        badgeDomain: 'https://assets.holo5.co/badges/',
         furnitureDomain: 'https://assets.holo5.co/city/furni/',
         figureDomain: 'https://assets.holo5.co/city/figure/',
         iconsDomain: 'https://swf.habbocity.me/dcr/hof_furni/icons2/',
@@ -22,7 +23,7 @@ export const Configuration: IConfiguration = {
     canvas: {
         stageContainer: 'canvas-zone',
         maxFrameRate: 60,
-        minHoverableFloorDebounce: 50,
+        hoverFrequency: 30,
     },
     room: {
         tiles: {

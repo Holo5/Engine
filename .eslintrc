@@ -5,38 +5,48 @@
     "project": "./tsconfig.json"
   },
   "plugins": [
-    "@typescript-eslint"
+    "@typescript-eslint",
+    "sort-imports-es6-autofix",
+    "unused-imports"
   ],
   "env": {
     "browser": true
   },
   "extends": ["airbnb-typescript/base"],
   "rules": {
-    "indent": ["error", 4, { "SwitchCase": 1 }],
     "@typescript-eslint/indent": ["error", 4],
-    "linebreak-style": [0, "error", "windows"],
-    "import/prefer-default-export": "off",
-    "object-curly-newline": "off",
-    "lines-between-class-members": "off",
     "@typescript-eslint/lines-between-class-members": "off",
-    "no-console": "off",
-    "no-underscore-dangle": "off",
-    "import/no-cycle": "off",
-    // I recommend turning this on when you are ready to refactor, can improve performance a lot
-    "radix": ["error", "as-needed"],
-    "class-methods-use-this": "off",
-    "no-plusplus": "off",
-    "max-len": [0, 120],
-    "no-param-reassign": [2, {"props": false}],
-    "no-bitwise": "off",
-    "no-mixed-operators": "off",
-    "no-unused-vars": "off",
     "@typescript-eslint/no-unused-vars": ["off"],
-    "prefer-destructuring": "off",
-    "no-multi-assign": "off",
-    "space-before-function-paren": "off",
-    "func-call-spacing": "off",
+    "@typescript-eslint/no-redeclare": ["off"],
+    "for-direction": "error",
+    "func-call-spacing": ["error", "never"],
     "import/extensions": "off",
-    "import/no-extraneous-dependencies": "off"
+    "import/no-cycle": "off",
+    "import/no-extraneous-dependencies": "off",
+    "import/prefer-default-export": "off",
+    "indent": ["error", 4, { "SwitchCase": 1 }],
+    "linebreak-style": [0, "error", "windows"],
+    "lines-between-class-members": "off",
+    "max-len": [0, 120],
+    "no-bitwise": "off",
+    "no-console": "off",
+    "no-mixed-operators": "off",
+    "no-multi-assign": "off",
+    "no-param-reassign": [2, {"props": false}],
+    "no-plusplus": "off",
+    "no-underscore-dangle": "off",
+    "no-unused-vars": "off",
+    "no-redeclare": "off",
+    "object-curly-newline": ["error"],
+    "prefer-destructuring": "off",
+    "radix": ["error", "as-needed"],
+    "space-before-function-paren": "off",
+    // I recommend turning this on when you are ready to refactor, can improve performance a lot
+    "sort-imports-es6-autofix/sort-imports-es6": [2, {
+      "ignoreCase": false,
+      "ignoreMemberSort": false,
+      "memberSyntaxSortOrder": ["none", "all", "multiple", "single"]
+    }],
+    "unused-imports/no-unused-imports": "error"
   }
 }

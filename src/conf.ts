@@ -13,6 +13,7 @@ export const Configuration: IConfiguration = {
     },
     images: {
         imageDomain: 'http://127.0.0.1:8082/',
+        badgeDomain: 'http://127.0.0.1:8082/badges/',
         furnitureDomain: 'http://127.0.0.1:8082/city/furni/',
         figureDomain: 'http://127.0.0.1:8082/city/figure/',
         iconsDomain: 'https://swf.habbocity.me/dcr/hof_furni/icons2/',
@@ -23,7 +24,7 @@ export const Configuration: IConfiguration = {
     canvas: {
         stageContainer: 'canvas-zone',
         maxFrameRate: 200,
-        minHoverableFloorDebounce: 50,
+        hoverFrequency: 30,
     },
     room: {
         tiles: {

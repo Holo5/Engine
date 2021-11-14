@@ -4,7 +4,7 @@ orbs:
   aws-s3: circleci/aws-s3@2.0.0
   aws-cloudfront: topmonks/aws-cloudfront@1.0.0
 jobs:
-  build-and-publish:
+  build-and-publish-prod:
     executor:
       name: node/default
       tag: '14.17.4'
@@ -22,13 +22,38 @@ jobs:
       - run:
           command: export NODE_OPTIONS=--max_old_space_size=4096 && yarn parcel build src/index.html --no-source-maps
           name: Build
+#      - run:
+#          command: rsync -avce "ssh -o StrictHostKeyChecking=no" --delete ./dist/ ubuntu@92.222.167.236:/var/www/client
+#          name: Uploading
+  build-and-publish-test:
+    executor:
+      name: node/default
+      tag: '14.17.4'
+    steps:
+      - run: sudo apt update
+      - run: sudo apt-get install rsync
+      - add_ssh_keys
+      - checkout
       - run:
-          command: rsync -avce "ssh -o StrictHostKeyChecking=no" --delete ./dist/ ubuntu@92.222.167.236:/var/www/client
-          name: Uploading
+          command: yarn install
+          name: Install dependencies
+      - run:
+          command: rm src/conf.ts && cp src/conf.prod.ts src/conf.ts
+          name: Pre-build
+      - run:
+          command: export NODE_OPTIONS=--max_old_space_size=4096 && yarn parcel build src/index.html --no-source-maps
+          name: Build
+#      - run:
+#          command: rsync -avce "ssh -o StrictHostKeyChecking=no" --delete ./dist/ ubuntu@92.222.167.236:/var/www/test
+#          name: Uploading
 workflows:
   build-and-deploy:
     jobs:
-      - build-and-publish:
+      - build-and-publish-prod:
           filters:
             branches:
               only: master
+      - build-and-publish-test:
+          filters:
+            branches:
+              only: /feature.*/
