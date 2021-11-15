@@ -22,16 +22,31 @@ export class TileFactory {
     }
 
     public detectOffsets(drawableTile: DrawableTile): ITileOffset {
-        let offsets = { x: 0, y: 0 };
+        let offsets = {
+            x: 0,
+            y: 0,
+        };
 
         if (drawableTile.floorType === FloorType.FLOOR) {
-            offsets = { x: -32, y: -16 };
+            offsets = {
+                x: -32,
+                y: -16,
+            };
         } else if (drawableTile.floorType === FloorType.RIGHT_STAIR_CASE) {
-            offsets = { x: -32, y: -40 };
+            offsets = {
+                x: -32,
+                y: -40,
+            };
         } else if (drawableTile.floorType === FloorType.LEFT_CORNER) {
-            offsets = { x: -32, y: -28 };
+            offsets = {
+                x: -32,
+                y: -28,
+            };
         } else if (drawableTile.floorType === FloorType.LEFT_STAIR_CASE || drawableTile.floorType === FloorType.FRONT_CORNER) {
-            offsets = { x: -32, y: -40 };
+            offsets = {
+                x: -32,
+                y: -40,
+            };
         }
 
         return offsets;

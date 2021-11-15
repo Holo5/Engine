@@ -1,6 +1,6 @@
 import { BaseImageResource, RenderTexture, Renderer } from 'pixi.js';
 import { CornerWallTexture } from './textures/CornerWallTexture';
-import { DisplayableZIndex } from '../../../../../../app/core/graphic/objects/enums/DisplayableZIndex';
+import { DisplayableZIndex } from '../../../../enums/DisplayableZIndex';
 import { DoorWallTexture } from './textures/DoorWallTexture';
 import { DrawableTile, WallType } from '@holo5/roombuilder';
 import { IWallOffset } from './interfaces/IWallOffset';
@@ -40,16 +40,36 @@ export class WallFactory {
     }
 
     public detectOffsets(drawableTile: DrawableTile, wallThickness: number, floorThickness: number): IWallOffset {
-        let offsets = { x: 0, y: 0, z: 0 };
+        let offsets = {
+            x: 0,
+            y: 0,
+            z: 0,
+        };
 
         if (drawableTile.wallType === WallType.CORNER_WALL) {
-            offsets = { x: -32 - wallThickness * 2, y: 3 + floorThickness + (-3 + wallThickness), z: DisplayableZIndex.WALL };
+            offsets = {
+                x: -32 - wallThickness * 2,
+                y: 3 + floorThickness + (-3 + wallThickness),
+                z: DisplayableZIndex.WALL,
+            };
         } else if (drawableTile.wallType === WallType.LEFT_WALL) {
-            offsets = { x: -32 - wallThickness * 2, y: 3 + floorThickness + (-3 + wallThickness), z: DisplayableZIndex.WALL };
+            offsets = {
+                x: -32 - wallThickness * 2,
+                y: 3 + floorThickness + (-3 + wallThickness),
+                z: DisplayableZIndex.WALL,
+            };
         } else if (drawableTile.wallType === WallType.RIGHT_WALL) {
-            offsets = { x: -1, y: 3 + floorThickness + (-3 + wallThickness), z: DisplayableZIndex.WALL };
+            offsets = {
+                x: -1,
+                y: 3 + floorThickness + (-3 + wallThickness),
+                z: DisplayableZIndex.WALL,
+            };
         } else if (drawableTile.wallType === WallType.DOOR_WALL) {
-            offsets = { x: -wallThickness * 2, y: -67 + 3 + floorThickness + (-3 + wallThickness), z: DisplayableZIndex.DOORWALL };
+            offsets = {
+                x: -wallThickness * 2,
+                y: -67 + 3 + floorThickness + (-3 + wallThickness),
+                z: DisplayableZIndex.DOORWALL,
+            };
         }
 
         offsets.y += floorThickness;

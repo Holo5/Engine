@@ -31,11 +31,12 @@ export class FigureDataManager {
                             ? this._figureData.colorPalettes[setType.paletteid][baseFigureDataPart.color].color : false;
 
                         if (color === false) {
-                            Object.keys(this._figureData.colorPalettes[setType.paletteid]).forEach((colorId) => {
-                                if (this._figureData.colorPalettes[setType.paletteid][colorId].index === baseFigureDataPart.color.toString()) {
-                                    color = this._figureData.colorPalettes[setType.paletteid][colorId].color;
-                                }
-                            });
+                            Object.keys(this._figureData.colorPalettes[setType.paletteid])
+                                .forEach((colorId) => {
+                                    if (this._figureData.colorPalettes[setType.paletteid][colorId].index === baseFigureDataPart.color.toString()) {
+                                        color = this._figureData.colorPalettes[setType.paletteid][colorId].color;
+                                    }
+                                });
                         }
                     }
 

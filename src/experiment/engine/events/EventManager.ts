@@ -4,7 +4,7 @@ import { Point } from 'pixi.js';
 export class EventManager {
     public currentCursor: Point;
     public lastPointerDownCursor: Point;
-    public currentEvents: ICurrentEvents ;
+    public currentEvents: ICurrentEvents;
 
     private clicking: boolean;
     private doubleClicking: boolean;
@@ -46,7 +46,14 @@ export class EventManager {
     }
 
     private updateInternalState() {
-        this.currentEvents = { clicking: this.clicking, doubleClicking: this.doubleClicking, dragging: this.pointerMove, currentCursor: this.currentCursor, cursorOffset: !this.pointerMove ? new Point() : new Point(this.currentCursor.x - this.lastUpdatedCursor.x, this.currentCursor.y - this.lastUpdatedCursor.y) };
+        this.currentEvents = {
+            clicking: this.clicking,
+            doubleClicking: this.doubleClicking,
+            dragging: this.pointerMove,
+            currentCursor: this.currentCursor,
+            cursorOffset: !this.pointerMove ? new Point() : new Point(this.currentCursor.x - this.lastUpdatedCursor.x,
+                this.currentCursor.y - this.lastUpdatedCursor.y),
+        };
         this.lastUpdatedCursor = this.currentCursor;
     }
 

@@ -9,17 +9,25 @@ export interface IGraphic extends Sprite {
     currentPosition: IVector3D;
 
     needInit(): boolean;
+
     needFrameUpdate(): boolean;
+
     needPositionUpdate(): boolean;
+
     needUpdate(): boolean;
 
     updateInit(resourceManager: AssetsManager): void;
+
     updateFrame(): void;
+
     updatePosition(point: Point): void;
+
     updateBounds(): void;
+
     update(now: number): void;
 
     checkBounds(bounds: Rectangle): void;
+
     checkEvents(currentEvents: ICurrentEvents): boolean;
 
     setPosition(position: IVector3D): void;

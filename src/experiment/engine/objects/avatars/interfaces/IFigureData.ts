@@ -7,15 +7,15 @@ export interface IFigureData {
 export interface IDraworder {
     [action: string]: {
         [direction: string]: string[]
-    }
+    };
 }
 
 export interface IColorPalettes {
-    [paletteId: string]: IColors
+    [paletteId: string]: IColors;
 }
 
 export interface IColors {
-    [colorId: string]: IColor
+    [colorId: string]: IColor;
 }
 
 export interface IColor {
@@ -26,7 +26,7 @@ export interface IColor {
 }
 
 export interface ISetTypes {
-    [type: string]: ISetType
+    [type: string]: ISetType;
 }
 
 export interface ISetType {
@@ -61,5 +61,5 @@ export interface IPart {
 }
 
 export interface IHiddenPart {
-    partType: string
+    partType: string;
 }

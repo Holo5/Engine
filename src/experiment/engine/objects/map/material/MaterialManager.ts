@@ -45,12 +45,12 @@ export class MaterialManager {
         const { textures } = wallData;
         const walls = Array.from(wallData.walls);
 
-        walls.forEach((wall) => {
+        walls.forEach((wall: any) => {
             const visualizations = Array.from(wall.visualizations);
-            const visualization = visualizations.shift();
+            const visualization: any = visualizations.shift();
 
             const layers = Array.from(visualization.layers);
-            const layer = layers.shift();
+            const layer: any = layers.shift();
 
             const texture = textures.find((t) => t.id === layer.materialId);
 

@@ -28,7 +28,11 @@ export class Engine {
         settings.RESOLUTION = window.devicePixelRatio;
         settings.SCALE_MODE = SCALE_MODES.NEAREST;
 
-        this.renderer = new Renderer({ width: 1000, height: 1000, backgroundAlpha: 0 });
+        this.renderer = new Renderer({
+            width: 1000,
+            height: 1000,
+            backgroundAlpha: 0,
+        });
         this.canvasContainer = document.querySelector(Configuration.global.targetInterface) as HTMLDivElement;
         this.canvasContainer.innerHTML = '';
         this.canvasContainer.append(this.renderer.view);

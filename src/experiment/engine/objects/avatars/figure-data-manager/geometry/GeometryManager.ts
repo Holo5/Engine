@@ -11,21 +11,25 @@ export class GeometryManager {
     private generate(bodyParts: any): string[] {
         const orderedBodyParts: string[] = [];
 
-        Object.keys(bodyParts).sort((a: string, b: string) => {
-            if (bodyParts[a].radius > bodyParts[b].radius) return 1;
-            if (bodyParts[a].radius < bodyParts[b].radius) return -1;
-            return 0;
-        }).some((key) => {
-            if (bodyParts[key].items !== undefined) {
-                Object.keys(bodyParts[key].items).sort((c: string, d: string) => {
-                    if (bodyParts[key].items[c].radius > bodyParts[key].items[d].radius) return 1;
-                    if (bodyParts[key].items[c].radius < bodyParts[key].items[d].radius) return -1;
-                    return 0;
-                }).forEach((id) => {
-                    orderedBodyParts.push(id);
-                });
-            }
-        });
+        Object.keys(bodyParts)
+            .sort((a: string, b: string) => {
+                if (bodyParts[a].radius > bodyParts[b].radius) return 1;
+                if (bodyParts[a].radius < bodyParts[b].radius) return -1;
+                return 0;
+            })
+            .some((key) => {
+                if (bodyParts[key].items !== undefined) {
+                    Object.keys(bodyParts[key].items)
+                        .sort((c: string, d: string) => {
+                            if (bodyParts[key].items[c].radius > bodyParts[key].items[d].radius) return 1;
+                            if (bodyParts[key].items[c].radius < bodyParts[key].items[d].radius) return -1;
+                            return 0;
+                        })
+                        .forEach((id) => {
+                            orderedBodyParts.push(id);
+                        });
+                }
+            });
 
         return orderedBodyParts;
     }

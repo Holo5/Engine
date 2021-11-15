@@ -9,10 +9,22 @@ export class DoorWallTexture extends WallGraphicTexture {
         super(wallMaterial, drawableTile, wallHeight, wallThickness);
 
         this._points = [
-            { x: 0, y: 0 },
-            { x: 32, y: 0 },
-            { x: 32, y: 40 + (this._drawableTile.wallHeight + wallHeight) * 32 },
-            { x: 0, y: 40 + (this._drawableTile.wallHeight + wallHeight) * 32 },
+            {
+                x: 0,
+                y: 0,
+            },
+            {
+                x: 32,
+                y: 0,
+            },
+            {
+                x: 32,
+                y: 40 + (this._drawableTile.wallHeight + wallHeight) * 32,
+            },
+            {
+                x: 0,
+                y: 40 + (this._drawableTile.wallHeight + wallHeight) * 32,
+            },
         ];
 
         this.drawParts();

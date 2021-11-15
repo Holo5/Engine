@@ -13,10 +13,22 @@ export class CornerWallTexture extends WallGraphicTexture {
 
     private drawRightBorder() {
         this._points = [
-            { x: -this._wallThickness * 2 + 33, y: -32 },
-            { x: 67, y: -32 },
-            { x: 67, y: 123 + (this._drawableTile.wallHeight + this._wallHeight) * 32 },
-            { x: 33, y: 123 + (this._drawableTile.wallHeight + this._wallHeight) * 32 },
+            {
+                x: -this._wallThickness * 2 + 33,
+                y: -32,
+            },
+            {
+                x: 67,
+                y: -32,
+            },
+            {
+                x: 67,
+                y: 123 + (this._drawableTile.wallHeight + this._wallHeight) * 32,
+            },
+            {
+                x: 33,
+                y: 123 + (this._drawableTile.wallHeight + this._wallHeight) * 32,
+            },
         ];
 
         const rightBorders = new Container();
@@ -37,10 +49,22 @@ export class CornerWallTexture extends WallGraphicTexture {
 
     private drawLeftBorder() {
         this._points = [
-            { x: 0, y: 0 },
-            { x: 32 + this._wallThickness * 2, y: 0 },
-            { x: 32, y: 123 + (this._drawableTile.wallHeight + this._wallHeight) * 32 },
-            { x: 0, y: 123 + (this._drawableTile.wallHeight + this._wallHeight) * 32 },
+            {
+                x: 0,
+                y: 0,
+            },
+            {
+                x: 32 + this._wallThickness * 2,
+                y: 0,
+            },
+            {
+                x: 32,
+                y: 123 + (this._drawableTile.wallHeight + this._wallHeight) * 32,
+            },
+            {
+                x: 0,
+                y: 123 + (this._drawableTile.wallHeight + this._wallHeight) * 32,
+            },
         ];
 
         const leftBorders = new Container();

@@ -21,7 +21,6 @@ export class Tile extends Graphic {
         this.visible = true;
     }
 
-
     public updatePosition(stageOffset: Point) {
         this.position.set(
             stageOffset.x + this.currentPosition.x + this.offsets.x,

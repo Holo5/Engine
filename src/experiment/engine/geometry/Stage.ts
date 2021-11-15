@@ -77,7 +77,8 @@ export class Stage extends Container {
     private checkHovered(now: number) {
         if (now - this.lastHoverTick > this.minHoverTick) {
             let hovered = this.children.find((child) => {
-                return (child.getEventCategory() === EventCategory.FLOOR || child.getEventCategory() === EventCategory.AVATARS) && child.checkEvents(this.eventManager.currentEvents);
+                return (child.getEventCategory() === EventCategory.FLOOR || child.getEventCategory() === EventCategory.AVATARS) && child.checkEvents(
+                    this.eventManager.currentEvents);
             });
 
             if (hovered) {
