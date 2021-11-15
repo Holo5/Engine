@@ -1,6 +1,7 @@
 {
   "compilerOptions": {
     "target": "es5",
+    "isolatedModules": true,
     "allowJs": false,
     "sourceMap": true,
     "removeComments": false,
@@ -14,8 +15,11 @@
     "moduleResolution": "node",
     "resolveJsonModule": true,
     "baseUrl": "src",
-    "lib": ["DOM"],
+    "lib": ["es2015","DOM"],
     "module": "ES2020",
+    "types": [
+      "offscreencanvas"
+    ],
     "paths": {
       "src/*": ["src/*"],
       "mini-signals": [
