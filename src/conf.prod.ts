@@ -1,4 +1,4 @@
-import { IConfiguration } from './app/interfaces/IConfiguration';
+import {IConfiguration} from './experiment/engine/interfaces/IConfiguration';
 
 export const Configuration: IConfiguration = {
     global: {
