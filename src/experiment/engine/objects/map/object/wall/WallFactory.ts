@@ -1,6 +1,5 @@
 import { BaseImageResource, RenderTexture, Renderer } from 'pixi.js';
 import { CornerWallTexture } from './textures/CornerWallTexture';
-import { DisplayableZIndex } from '../../../../../../app/core/graphic/objects/enums/DisplayableZIndex';
 import { DoorWallTexture } from './textures/DoorWallTexture';
 import { DrawableTile, WallType } from '@holo5/roombuilder';
 import { IWallOffset } from './interfaces/IWallOffset';
@@ -8,6 +7,7 @@ import { LeftWallTexture } from './textures/LeftWallTexture';
 import { MaterialManager } from '../../material/MaterialManager';
 import { RightWallTexture } from './textures/RightWallTexture';
 import { WallGraphicTexture } from './textures/WallGraphicTexture';
+import {DisplayableZIndex} from '../../../../enums/DisplayableZIndex';
 
 export class WallFactory {
 

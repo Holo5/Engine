@@ -1,9 +1,9 @@
 import { Configuration } from '../../../../conf';
 import { Engine } from '../../Engine';
-import { FurniData } from '../../../../app/core/graphic/objects/room/items/item-module/assets-manager/FurniData';
-import { FurniDataManager } from '../../../../app/core/graphic/objects/room/items/item-module/assets-manager/FurniDataManager';
-import { IFurniData } from '../../../../app/core/graphic/objects/room/items/item-module/interfaces/IFurniData';
 import { PlaceholderVisualization } from './visualizations/PlaceholderVisualization';
+import {FurniDataManager} from './assets-manager/FurniDataManager';
+import {IFurniData} from './interfaces/IFurniData';
+import {FurniData} from './assets-manager/FurniData';
 
 export class ItemModule {
 
