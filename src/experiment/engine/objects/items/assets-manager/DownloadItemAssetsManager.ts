@@ -1,8 +1,8 @@
-import { Configuration } from '../../../../../../../Client/src/conf';
 import { IBaseAssetsFiles, IItemAssetsManager } from './interfaces/IItemAssetsManager';
 import { IFurniData } from '../interfaces/IFurniData';
 import { ILoaderResource, Loader } from 'pixi.js';
 import { Memento, Request } from 'mementojs';
+import {Configuration} from '../../../../../conf';
 
 export class DownloadItemAssetsManager extends Memento<ILoaderResource> implements IItemAssetsManager {
     private _loader: Loader;
