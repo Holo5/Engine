@@ -1,9 +1,9 @@
 import { Configuration } from '../../../../conf';
 import { Engine } from '../../Engine';
+import { FurniData } from './assets-manager/FurniData';
+import { FurniDataManager } from './assets-manager/FurniDataManager';
+import { IFurniData } from './interfaces/IFurniData';
 import { PlaceholderVisualization } from './visualizations/PlaceholderVisualization';
-import {FurniDataManager} from './assets-manager/FurniDataManager';
-import {IFurniData} from './interfaces/IFurniData';
-import {FurniData} from './assets-manager/FurniData';
 
 export class ItemModule {
 
@@ -39,7 +39,6 @@ export class ItemModule {
 
         return `${Configuration.images.iconsDomain + furniData.className}_icon.png`;
     }
-
 
     getInventoryItemFurniData(spriteId: number): FurniData {
         return this.furniDataManager.findFloorItem(spriteId);

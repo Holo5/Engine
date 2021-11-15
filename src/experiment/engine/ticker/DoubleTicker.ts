@@ -1,4 +1,4 @@
-export class DoubleTicker{
+export class DoubleTicker {
     private intervalWorker: Worker;
 
     private maxAnimationRate: number;
@@ -9,7 +9,7 @@ export class DoubleTicker{
     private displayTickCallback: () => void;
 
     constructor(maxAnimationRate: number, maxDisplayRate: number) {
-        this.intervalWorker = new Worker(new URL('IntervalWorker.js', import.meta.url), {type: "module"});
+        this.intervalWorker = new Worker(new URL('IntervalWorker.js', import.meta.url), { type: 'module' });
 
         this.updateMaxAnimationRate(maxAnimationRate);
         this.updateMaxDisplayRate(maxDisplayRate);
@@ -24,12 +24,18 @@ export class DoubleTicker{
 
     public updateMaxAnimationRate(maxAnimationRate: number) {
         this.maxAnimationRate = maxAnimationRate;
-        this.intervalWorker.postMessage({ animationRate: this.maxAnimationRate, displayRate: this.maxDisplayRate });
+        this.intervalWorker.postMessage({
+            animationRate: this.maxAnimationRate,
+            displayRate: this.maxDisplayRate,
+        });
     }
 
     public updateMaxDisplayRate(maxFPS: number) {
         this.maxDisplayRate = maxFPS;
-        this.intervalWorker.postMessage({ animationRate: this.maxAnimationRate, displayRate: this.maxDisplayRate });
+        this.intervalWorker.postMessage({
+            animationRate: this.maxAnimationRate,
+            displayRate: this.maxDisplayRate,
+        });
     }
 
     private tick(message: MessageEvent) {

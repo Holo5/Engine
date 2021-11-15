@@ -48,7 +48,6 @@ export class Avatar extends Graphic {
             this.addAvatarPart(avatarPart);
         });
 
-
         this.avatarParts = this.avatarParts.sort((a, b) => {
             return a.zIndex - b.zIndex;
         });

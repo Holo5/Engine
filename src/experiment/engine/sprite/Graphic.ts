@@ -88,7 +88,6 @@ export class Graphic extends Sprite implements IGraphic {
             this.bounds.y + this.bounds.height));
     }
 
-
     public checkEvents(currentEvents: ICurrentEvents): boolean {
         if (!this.bounds) return false;
 

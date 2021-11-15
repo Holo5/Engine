@@ -6,7 +6,7 @@ import { ExpandedFigureDataPart } from '../figure-data-manager/ExpandedFigureDat
 import { Graphic } from '../../../sprite/Graphic';
 import { LoaderResource, Texture } from 'pixi.js';
 
-export class AvatarPart extends Graphic  {
+export class AvatarPart extends Graphic {
     public textures: Texture[];
     public currentTextureName: string;
 
@@ -108,7 +108,7 @@ export class AvatarPart extends Graphic  {
         const finalDirection = direction !== undefined ? direction : this.direction;
         this.currentTextureName = `${this.expandedFigureDataPart.type}_${this.expandedFigureDataPart.id}_${action}_${finalDirection}`;
         if (this.resource?.spritesheet?.animations[this.currentTextureName] !== undefined
-          && this.resource?.spritesheet?.animations[this.currentTextureName][0] !== undefined) {
+            && this.resource?.spritesheet?.animations[this.currentTextureName][0] !== undefined) {
             this.textures = this.resource.spritesheet.animations[this.currentTextureName];
             this.visible = true;
         } else if (direction === 0 || direction === 6 || direction === 7 || action === AvatarPosture.POSTURE_LAY) this.visible = false;

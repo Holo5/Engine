@@ -10,5 +10,5 @@ export interface IItemAssetsManager {
 export interface IBaseAssetsFiles {
     furniData: IFurniData,
     itemPlaceholderTexture: Texture,
-    tileCursor: { [name: string] : Texture }
+    tileCursor: { [name: string]: Texture }
 }

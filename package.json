@@ -10,7 +10,8 @@
   "types": "dist/types.d.ts",
   "scripts": {
     "watch": "parcel watch",
-    "build": "parcel build"
+    "build": "parcel build",
+    "lint": "eslint --ext .js,.ts ./src --color"
   },
   "dependencies": {
     "@holo5/roombuilder": "^0.4.2",
@@ -33,6 +34,8 @@
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-config-airbnb-typescript": "^15.0.0",
     "eslint-plugin-import": "^2.25.3",
+    "eslint-plugin-sort-imports-es6-autofix": "^0.6.0",
+    "eslint-plugin-unused-imports": "^2.0.0",
     "javascript-obfuscator": "^3.0.0",
     "parcel": "2.0.1",
     "sass": "^1.43.4",

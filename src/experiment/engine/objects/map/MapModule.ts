@@ -35,7 +35,13 @@ export class MapModule {
         };
     }
 
-    public getWallTextureData(materialId: string, drawableTile: DrawableTile, floorThickness: number, wallHeight: number = 0, wallThickness: number = 2): { texture: Texture; offset: ITileOffset } {
+    public getWallTextureData(
+        materialId: string,
+        drawableTile: DrawableTile,
+        floorThickness: number,
+        wallHeight: number = 0,
+        wallThickness: number = 2,
+    ): { texture: Texture; offset: ITileOffset } {
         return {
             texture: this.wallFactory.getCachedGraphicTexture(materialId, drawableTile, wallHeight, wallThickness),
             offset: this.wallFactory.detectOffsets(drawableTile, wallThickness, floorThickness),
@@ -43,7 +49,14 @@ export class MapModule {
     }
 
     public getWallTest() {
-        return this.wallFactory.getCachedGraphicTexture('101', new DrawableTile({ x: 100, y: 100, z: 100 }, WallType.LEFT_WALL, FloorType.FLOOR, 0), 2, 3);
+        return this.wallFactory.getCachedGraphicTexture('101',
+            new DrawableTile({
+                x: 100,
+                y: 100,
+                z: 100,
+            }, WallType.LEFT_WALL, FloorType.FLOOR, 0),
+            2,
+            3);
     }
 
 }
