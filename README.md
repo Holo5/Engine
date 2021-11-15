@@ -1,15 +1,7 @@
-# HOLO5
-![Holo5](https://i.imgur.com/STrCf5G.png)
+<center><img src="https://client.holo5.co/holo-logo.99959bf5.png"></center>
+# HOLO5 Engine
 
-This project is our implementation of Habbo Hotel.
-We do not pretend it is exactly the same, only an abstract copy of it.
+Game enfine of the Holo5 and Habbo Discovery game.
 
-Love.
-
-# Contributors
-* [Eklopsis](https://github.com/iamgpe)
-* Softy / Tanguy
-* [Anis](https://github.com/anis8)
-* [Ken <3](https://github.com/KennethGomez)
-* [Versace](https://github.com/versaceLORD)
-* [Cam](https://github.com/CammmPW)
+## Documentation
+A documentation will be provided soon.
