@@ -4,4 +4,4 @@
 Game enfine of the Holo5 and Habbo Discovery game.
 
 ## Documentation
-A documentation will be provided soon.
+A documentation will be provided soon...
