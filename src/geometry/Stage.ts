@@ -1,4 +1,4 @@
-import { Configuration } from '../../../conf';
+import { Configuration } from '../../example/conf';
 import { Container, DisplayObject } from 'pixi.js';
 import { Engine } from '../Engine';
 import { EventCategory } from '../sprite/enum/EventCategory';

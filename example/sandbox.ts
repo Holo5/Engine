@@ -1,20 +1,20 @@
-import { Engine } from './experiment/engine/Engine';
+import { Engine } from '../src/Engine';
 import { FloorType, IVector3D, ObjectType, PositionComputer, RoomGenerator, Vector3d, WallType } from '@holo5/roombuilder';
-import { Tile } from './experiment/engine/objects/map/object/tile/Tile';
-import { Wall } from './experiment/engine/objects/map/object/wall/Wall';
+import { Tile } from '../src/objects/map/object/tile/Tile';
+import { Wall } from '../src/objects/map/object/wall/Wall';
 
-const engine = new Engine();
+const sandbox = new Engine();
 
 function addNewFigure(figure: string, position: IVector3D) {
-    const something = engine.avatarModule.buildFromFigure(figure);
+    const something = sandbox.avatarModule.buildFromFigure(figure);
 
     something.avatarParts.forEach(child => {
         child.setPosition(position);
-        engine.stage.addChild(child);
+        sandbox.stage.addChild(child);
     });
 }
 
-engine.init()
+sandbox.init()
     .then(() => {
         for (let i = 0; i < 1000; i++) {
             // const sprite = new Badge();
@@ -64,18 +64,18 @@ engine.init()
 
         room.drawableTiles.forEach((drawableTile) => {
             if (drawableTile.floorType !== FloorType.BORDER_UNUSABLE) {
-                let tileTextureData = engine.mapModule.getTileTextureData('111', drawableTile, 2);
+                let tileTextureData = sandbox.mapModule.getTileTextureData('111', drawableTile, 2);
                 let tile = new Tile(tileTextureData.texture, drawableTile, tileTextureData.offset);
                 tile.setPosition(PositionComputer.getObjectScreenPosition(drawableTile.position, ObjectType.TILE));
 
-                engine.stage.addChild(tile);
+                sandbox.stage.addChild(tile);
 
                 if (drawableTile.wallType !== WallType.NONE) {
-                    let wallTextureData = engine.mapModule.getWallTextureData('201', drawableTile, 2, drawableTile.wallHeight, 2);
+                    let wallTextureData = sandbox.mapModule.getWallTextureData('201', drawableTile, 2, drawableTile.wallHeight, 2);
                     let wall = new Wall(wallTextureData.texture, drawableTile, wallTextureData.offset);
                     wall.setPosition(PositionComputer.getObjectScreenPosition(drawableTile.position, ObjectType.WALL));
 
-                    engine.stage.addChild(wall);
+                    sandbox.stage.addChild(wall);
                 }
             }
         });
@@ -224,5 +224,5 @@ engine.init()
             0,
         ));
 
-        console.log('Children count', engine.stage.children.length);
+        console.log('Children count', sandbox.stage.children.length);
     });

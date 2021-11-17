@@ -1,4 +1,4 @@
-import { Configuration } from '../../../../../conf';
+import { Configuration } from '../../../../example/conf';
 import { EventCategory } from '../../../sprite/enum/EventCategory';
 import { Graphic } from '../../../sprite/Graphic';
 
