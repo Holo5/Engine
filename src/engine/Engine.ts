@@ -1,6 +1,6 @@
 import { AssetsManager } from './assets/AssetsManager';
 import { AvatarModule } from './objects/avatars/AvatarModule';
-import { Configuration } from '../../conf';
+import { Configuration } from '../../example/conf';
 import { DoubleTicker } from './ticker/DoubleTicker';
 import { ItemModule } from './objects/items/ItemModule';
 import { MapModule } from './objects/map/MapModule';

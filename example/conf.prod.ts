@@ -1,21 +1,20 @@
-import { IConfiguration } from './experiment/engine/interfaces/IConfiguration';
+import { IConfiguration } from '../src/engine/interfaces/IConfiguration';
 
 export const Configuration: IConfiguration = {
     global: {
         hotelName: 'HOLO5',
         targetInterface: '#game',
-        debug: true,
-        externalText: 'http://localhost:8082/city/external_flash_texts.txt',
+        debug: false,
+        externalText: 'https://assets.holo5.co/city/external_flash_texts.txt',
     },
     network: {
-        // gameServerAddress: 'ws://127.0.0.1:8999',
         gameServerAddress: 'wss://holo.habbocity.me',
     },
     images: {
-        imageDomain: 'http://127.0.0.1:8082/',
-        badgeDomain: 'http://127.0.0.1:8082/badges/',
-        furnitureDomain: 'http://127.0.0.1:8082/city/furni/',
-        figureDomain: 'http://127.0.0.1:8082/city/figure/',
+        imageDomain: 'https://assets.holo5.co/',
+        badgeDomain: 'https://assets.holo5.co/badges/',
+        furnitureDomain: 'https://assets.holo5.co/city/furni/',
+        figureDomain: 'https://assets.holo5.co/city/figure/',
         iconsDomain: 'https://swf.habbocity.me/dcr/hof_furni/icons2/',
         placeholderIconName: 'PlaceHolderFurniture_icon.png',
         catalogDomain: 'https://swf.habbocity.me/c_images/catalogue/',
@@ -23,13 +22,13 @@ export const Configuration: IConfiguration = {
     },
     canvas: {
         stageContainer: 'canvas-zone',
-        maxFrameRate: 200,
+        maxFrameRate: 60,
         hoverFrequency: 30,
     },
     room: {
         tiles: {
             defaultMaterial: '111',
-            defaultThickness: 1,
+            defaultThickness: 3,
         },
         walls: {
             defaultMaterial: '201',

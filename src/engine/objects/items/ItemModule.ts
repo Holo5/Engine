@@ -1,4 +1,4 @@
-import { Configuration } from '../../../../conf';
+import { Configuration } from '../../../../example/conf';
 import { Engine } from '../../Engine';
 import { FurniData } from './assets-manager/FurniData';
 import { FurniDataManager } from './assets-manager/FurniDataManager';

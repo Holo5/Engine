@@ -1,4 +1,4 @@
-import { Configuration } from '../../../../../conf';
+import { Configuration } from '../../../../../example/conf';
 import { IBaseAssetsFiles, IItemAssetsManager } from './interfaces/IItemAssetsManager';
 import { IFurniData } from '../interfaces/IFurniData';
 import { ILoaderResource, Loader } from 'pixi.js';
