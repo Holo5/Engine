@@ -1,7 +1,7 @@
 import { AssetsManager } from '../../../assets/AssetsManager';
 import { AvatarGesture } from '../enums/AvatarGesture';
 import { AvatarPosture } from '../enums/AvatarPosture';
-import { Configuration } from '../../../../../example/conf';
+import { Configuration } from '../../../../example/conf';
 import { ExpandedFigureDataPart } from '../figure-data-manager/ExpandedFigureDataPart';
 import { Graphic } from '../../../sprite/Graphic';
 import { LoaderResource, Texture } from 'pixi.js';

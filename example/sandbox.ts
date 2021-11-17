@@ -1,7 +1,7 @@
-import { Engine } from '../src/engine/Engine';
+import { Engine } from '../src/Engine';
 import { FloorType, IVector3D, ObjectType, PositionComputer, RoomGenerator, Vector3d, WallType } from '@holo5/roombuilder';
-import { Tile } from '../src/engine/objects/map/object/tile/Tile';
-import { Wall } from '../src/engine/objects/map/object/wall/Wall';
+import { Tile } from '../src/objects/map/object/tile/Tile';
+import { Wall } from '../src/objects/map/object/wall/Wall';
 
 const sandbox = new Engine();
 

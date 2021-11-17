@@ -1,7 +1,7 @@
 import { Avatar } from './avatar-parts/Avatar';
 import { AvatarPosture } from './enums/AvatarPosture';
 import { BaseFigureDataPart } from './figure-data-manager/BaseFigureDataPart';
-import { Configuration } from '../../../../example/conf';
+import { Configuration } from '../../../example/conf';
 import { Engine } from '../../Engine';
 import { ExpandedFigureDataPart } from './figure-data-manager/ExpandedFigureDataPart';
 import { FigureDataManager } from './figure-data-manager/FigureDataManager';

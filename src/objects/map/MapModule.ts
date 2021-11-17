@@ -1,4 +1,4 @@
-import { Configuration } from '../../../../example/conf';
+import { Configuration } from '../../../example/conf';
 import { DrawableTile, FloorType, WallType } from '@holo5/roombuilder';
 import { Engine } from '../../Engine';
 import { ITileOffset } from './object/tile/interfaces/ITileOffset';
