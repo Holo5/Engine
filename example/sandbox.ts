@@ -15,7 +15,7 @@ function addNewFigure(figure: string, position: IVector3D) {
 }
 
 sandbox.init()
-       .then(() => {
+    .then(() => {
         for (let i = 0; i < 1000; i++) {
             // const sprite = new Badge();
             // sprite.setPosition({ x: Math.random() * 1300 | 0, y: Math.random() * 800 | 0, z: 0 });
