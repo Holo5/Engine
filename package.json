@@ -7,9 +7,8 @@
   "source": "src/Engine.ts",
   "main": "dist/main.js",
   "module": "dist/module.js",
-  "types": "dist/types.d.ts",
   "scripts": {
-    "watch": "parcel watch",
+    "watch": "parcel example/sandbox.html",
     "build": "parcel build",
     "lint": "eslint --ext .js,.ts ./src --color",
     "check": "tsc --noEmit"
