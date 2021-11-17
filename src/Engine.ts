@@ -24,13 +24,22 @@ export class Engine {
     public mapModule: MapModule;
     public avatarModule: AvatarModule;
 
-    constructor() {
+    constructor(
+        private container: HTMLDivElement,
+        private width: number = 1000,
+        private height: number = 1000,
+        private autoResize: boolean = true,
+        private backgroundAlpha: false | number,
+        private maxAnimationRate: number = 8,
+        private maxDisplayRate: number = 140,
+    ) {
         settings.RESOLUTION = window.devicePixelRatio;
         settings.SCALE_MODE = SCALE_MODES.NEAREST;
 
         this.renderer = new Renderer({
-            width: 1000,
-            height: 1000,
+            width: this.width,
+            height: this.height,
+
             backgroundAlpha: 0,
         });
         this.canvasContainer = document.querySelector(Configuration.global.targetInterface) as HTMLDivElement;
