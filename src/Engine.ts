@@ -1,6 +1,7 @@
 import { AssetsManager } from './assets/AssetsManager';
 import { AvatarModule } from './objects/avatars/AvatarModule';
 import { DoubleTicker } from './ticker/DoubleTicker';
+import { IEngineOption } from './interfaces/IEngineOption';
 import { ItemModule } from './objects/items/ItemModule';
 import { MapModule } from './objects/map/MapModule';
 import { Matrix, Rectangle, Renderer, SCALE_MODES, settings } from 'pixi.js';
@@ -12,6 +13,7 @@ export class Engine {
     public static RIGHT_ISO_MATRIX = new Matrix(1, -0.5, 0, 1);
     public static AVATAR_BOUNDS = new Rectangle(-38, -140, 140, 160);
 
+    public canvasContainer: HTMLElement;
     public renderer: Renderer;
     public assetsManager: AssetsManager;
     public stage: Stage;
@@ -22,27 +24,24 @@ export class Engine {
     public avatarModule: AvatarModule;
 
     constructor(
-        private canvasContainer: HTMLElement = document.body,
-        private width: number = 1000,
-        private height: number = 1000,
-        private autoResize: boolean = true,
-        private backgroundAlpha: number = 0,
-        private maxAnimationRate: number = 8,
-        private maxDisplayRate: number = 24,
+        private options: IEngineOption,
     ) {
-        settings.RESOLUTION = window.devicePixelRatio;
+        settings.RESOLUTION = 1;
         settings.SCALE_MODE = SCALE_MODES.NEAREST;
 
         this.renderer = new Renderer({
-            width: this.width,
-            height: this.height,
-            backgroundAlpha: this.backgroundAlpha,
+            width: options.width,
+            height: options.height,
+            backgroundAlpha: options.backgroundAlpha,
         });
+        this.canvasContainer = options.canvasContainer;
         this.canvasContainer.innerHTML = '';
         this.canvasContainer.append(this.renderer.view);
 
+        console.log(window.devicePixelRatio);
+
         this.stage = new Stage(this);
-        this.ticker = new DoubleTicker(8, 140);
+        this.ticker = new DoubleTicker(options.maxAnimationRate, options.maxDisplayRate);
         this.ticker.attachCallbacks(() => this.stage.animationTick(), () => this.stage.displayTick());
 
         this.assetsManager = new AssetsManager();

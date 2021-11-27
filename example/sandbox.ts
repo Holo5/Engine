@@ -3,7 +3,33 @@ import { FloorType, IVector3D, ObjectType, PositionComputer, RoomGenerator, Wall
 import { Tile } from '../src/objects/map/object/tile/Tile';
 import { Wall } from '../src/objects/map/object/wall/Wall';
 
-const sandbox = new Engine();
+const sandbox = new Engine({
+    width: 1000,
+    height: 1000,
+    canvasContainer: document.body,
+    backgroundAlpha: 0,
+    mouseEventFrequency: 50,
+    autoResize: true,
+    maxAnimationRate: 8,
+    maxDisplayRate: 60,
+    images: {
+        imageDomain: 'http://127.0.0.1:8082/',
+        badgeDomain: 'http://127.0.0.1:8082/badges/',
+        furnitureDomain: 'http://127.0.0.1:8082/city/furni/',
+        figureDomain: 'http://127.0.0.1:8082/city/figure/',
+    },
+    room: {
+        tiles: {
+            defaultMaterial: '111',
+            defaultThickness: 1,
+        },
+        walls: {
+            defaultMaterial: '201',
+            defaultThickness: 3,
+            defaultHeight: 123,
+        },
+    },
+});
 
 function addNewFigure(figure: string, position: IVector3D) {
     const something = sandbox.avatarModule.buildFromFigure(figure);
