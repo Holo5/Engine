@@ -11,7 +11,7 @@ const sandbox = new Engine({
     mouseEventFrequency: 50,
     autoResize: true,
     maxAnimationRate: 8,
-    maxDisplayRate: 60,
+    maxDisplayRate: 24,
     images: {
         imageDomain: 'http://127.0.0.1:8082/',
         badgeDomain: 'http://127.0.0.1:8082/badges/',
