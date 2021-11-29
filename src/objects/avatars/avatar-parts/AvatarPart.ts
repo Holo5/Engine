@@ -1,5 +1,4 @@
 import { AssetsManager } from '../../../assets/AssetsManager';
-import { AvatarGesture } from '../enums/AvatarGesture';
 import { AvatarPosture } from '../enums/AvatarPosture';
 import { Configuration } from '../../../../example/conf';
 import { ExpandedFigureDataPart } from '../figure-data-manager/ExpandedFigureDataPart';
@@ -11,36 +10,66 @@ export class AvatarPart extends Graphic {
     public currentTextureName: string;
 
     private needFrameChange: boolean;
-    private currentAction: string;
+    private action: string;
     private direction: number;
-    private gesture: AvatarGesture | string;
-    private posture: AvatarPosture;
     private currentTextureIndex: number;
     private resource: LoaderResource;
 
     constructor(
         public expandedFigureDataPart: ExpandedFigureDataPart,
     ) {
-        super(Texture.EMPTY);
+        super(Texture.WHITE);
+
+        this.needFrameChange = false;
+        this.direction = 2;
+        this.action = AvatarPosture.POSTURE_STAND;
+
+        if (this.expandedFigureDataPart.color !== false && this.expandedFigureDataPart.type !== 'ey') {
+            this.tint = parseInt(`0x${this.expandedFigureDataPart.color}`);
+        }
+
+        if (expandedFigureDataPart.type === 'sd') this.alpha = 0.3;
+        if (!expandedFigureDataPart.defaultVisible) this.visible = false;
     }
 
     public updateInit(resourceManager: AssetsManager): void {
         if (this.getTextureLink() === null) return;
 
-        console.log('OK ?');
+        if (!resourceManager.has(this.expandedFigureDataPart.assetName, this.getTextureLink())) return;
 
-        if (resourceManager.has(this.expandedFigureDataPart.assetName, this.getTextureLink())) {
-            this.resource = resourceManager.get(this.expandedFigureDataPart.assetName);
-            if (this.resource.spritesheet === undefined || this.resource.spritesheet.animations === undefined) return;
+        this.resource = resourceManager.get(this.expandedFigureDataPart.assetName);
+        if (this.resource.spritesheet === undefined || this.resource.spritesheet.animations === undefined) return;
 
-            this.needFrameChange = true;
-            this.updateBounds();
-            this.isInited = true;
-        }
+        this.needFrameChange = true;
+        this.updateBounds();
+        this.isInited = true;
     }
 
-    updateAction(action: string, direction?: number) {
+    public needFrameUpdate(): boolean {
+        return this.needFrameChange;
+    }
 
+    public updateFrame() {
+        this.updateAction(this.action, this.direction);
+        this.needFrameChange = false;
+    }
+
+    updateAction(action: string, direction?: number, fixFrame: number | false = false) {
+        this.action = action;
+
+        const finalDirection = direction !== undefined ? direction : this.direction;
+        this.currentTextureName = `${this.expandedFigureDataPart.type}_${this.expandedFigureDataPart.id}_${action}_${finalDirection}`;
+        if (this.resource?.spritesheet?.animations[this.currentTextureName] !== undefined
+          && this.resource?.spritesheet?.animations[this.currentTextureName][0] !== undefined) {
+            this.texture = this.resource.spritesheet.animations[this.currentTextureName][0];
+            this.visible = true;
+        } else if (direction === 0 || direction === 6 || direction === 7 || action === AvatarPosture.POSTURE_LAY) this.visible = false;
+
+        if (fixFrame !== false) {
+            this.texture = this.textures[fixFrame];
+        }
+
+        this.direction = finalDirection;
     }
 
     updateDirection(direction: number) {
@@ -49,7 +78,7 @@ export class AvatarPart extends Graphic {
 
     updateExpandedFigureDataPart(expandedFigureDataPart: ExpandedFigureDataPart) {
         this.expandedFigureDataPart = expandedFigureDataPart;
-        this.updateAction(this.currentAction);
+        this.updateAction(this.action);
     }
 
     protected getTextureLink(): string {
