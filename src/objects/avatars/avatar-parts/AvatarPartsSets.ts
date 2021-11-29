@@ -21,19 +21,19 @@ export class AvatarPartsSets {
 
     setCurrentAction(avatarPart: AvatarPart) {
         if (AvatarPartSetsActions[this.avatar.currentPosture].indexOf(avatarPart.getType()) !== -1) {
-            avatarPart.updatePosture(this.avatar.currentPosture);
+            avatarPart.updateAction(this.avatar.currentPosture);
         }
 
         const avatarPartSetsActions = this.avatar.currentGesture === AvatarGesture.GESTURE_SPEAK ? AvatarPartSetsActions.spk : AvatarPartSetsActions.gesture;
         if (avatarPartSetsActions.indexOf(avatarPart.getType()) !== -1 && this.avatar.currentPosture !== AvatarPosture.POSTURE_LAY) {
-            avatarPart.updateGesture(this.avatar.currentGesture);
+            avatarPart.updateAction(this.avatar.currentGesture);
         }
 
         if (AvatarPartSetsActions.handRight.indexOf(avatarPart.getType()) !== -1) {
             if (this.avatar.currentRightItemId !== undefined && this.avatar.currentPosture !== AvatarPosture.POSTURE_LAY) {
-                avatarPart.updateGesture(AvatarGesture.GESTURE_CARRY);
+                avatarPart.updateAction(AvatarGesture.GESTURE_CARRY);
             } else {
-                avatarPart.updatePosture(this.avatar.currentPosture === AvatarPosture.POSTURE_SIT ? AvatarPosture.POSTURE_STAND : this.avatar.currentPosture);
+                avatarPart.updateAction(this.avatar.currentPosture === AvatarPosture.POSTURE_SIT ? AvatarPosture.POSTURE_STAND : this.avatar.currentPosture);
             }
         }
 
@@ -45,7 +45,7 @@ export class AvatarPartsSets {
                     avatarPart.updateAction(AvatarGesture.GESTURE_SIGNAL, undefined, 0);
                 }
             } else {
-                avatarPart.updatePosture(this.avatar.currentPosture === AvatarPosture.POSTURE_SIT ? AvatarPosture.POSTURE_STAND : this.avatar.currentPosture);
+                avatarPart.updateAction(this.avatar.currentPosture === AvatarPosture.POSTURE_SIT ? AvatarPosture.POSTURE_STAND : this.avatar.currentPosture);
             }
         }
 
