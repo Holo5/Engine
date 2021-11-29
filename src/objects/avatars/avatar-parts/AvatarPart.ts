@@ -12,6 +12,7 @@ export class AvatarPart extends Graphic {
     private needFrameChange: boolean;
     private action: string;
     private direction: number;
+    private fixFrame: number | false;
     private currentTextureIndex: number;
     private resource: LoaderResource;
 
@@ -23,6 +24,7 @@ export class AvatarPart extends Graphic {
         this.needFrameChange = false;
         this.direction = 2;
         this.action = AvatarPosture.POSTURE_STAND;
+        this.fixFrame = false;
 
         if (this.expandedFigureDataPart.color !== false && this.expandedFigureDataPart.type !== 'ey') {
             this.tint = parseInt(`0x${this.expandedFigureDataPart.color}`);
@@ -40,6 +42,7 @@ export class AvatarPart extends Graphic {
         this.resource = resourceManager.get(this.expandedFigureDataPart.assetName);
         if (this.resource.spritesheet === undefined || this.resource.spritesheet.animations === undefined) return;
 
+        this.visible = false;
         this.needFrameChange = true;
         this.updateBounds();
         this.isInited = true;
@@ -50,29 +53,30 @@ export class AvatarPart extends Graphic {
     }
 
     public updateFrame() {
-        this.updateAction(this.action, this.direction);
+        this.currentTextureName = `${this.expandedFigureDataPart.type}_${this.expandedFigureDataPart.id}_${this.action}_${this.direction}`;
+        if (this.resource?.spritesheet?.animations[this.currentTextureName] !== undefined
+          && this.resource?.spritesheet?.animations[this.currentTextureName][0] !== undefined) {
+            this.texture = this.resource.spritesheet.animations[this.currentTextureName][0];
+            this.visible = true;
+        } else if (this.direction === 0 || this.direction === 6 || this.direction === 7 || this.action === AvatarPosture.POSTURE_LAY) this.visible = false;
+
+        if (this.fixFrame !== false) {
+            this.texture = this.textures[this.fixFrame];
+        }
+
         this.needFrameChange = false;
     }
 
     updateAction(action: string, direction?: number, fixFrame: number | false = false) {
         this.action = action;
+        this.direction = direction ?? this.direction;
+        this.fixFrame = fixFrame;
 
-        const finalDirection = direction !== undefined ? direction : this.direction;
-        this.currentTextureName = `${this.expandedFigureDataPart.type}_${this.expandedFigureDataPart.id}_${action}_${finalDirection}`;
-        if (this.resource?.spritesheet?.animations[this.currentTextureName] !== undefined
-          && this.resource?.spritesheet?.animations[this.currentTextureName][0] !== undefined) {
-            this.texture = this.resource.spritesheet.animations[this.currentTextureName][0];
-            this.visible = true;
-        } else if (direction === 0 || direction === 6 || direction === 7 || action === AvatarPosture.POSTURE_LAY) this.visible = false;
-
-        if (fixFrame !== false) {
-            this.texture = this.textures[fixFrame];
-        }
-
-        this.direction = finalDirection;
+        this.needFrameChange = true;
     }
 
     updateDirection(direction: number) {
+        this.direction = direction;
         this.needFrameChange = true;
     }
 
