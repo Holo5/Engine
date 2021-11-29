@@ -19,7 +19,7 @@ export class AvatarPart extends Graphic {
     constructor(
         public expandedFigureDataPart: ExpandedFigureDataPart,
     ) {
-        super(Texture.WHITE);
+        super(Texture.EMPTY);
 
         this.needFrameChange = false;
         this.direction = 2;
@@ -30,7 +30,7 @@ export class AvatarPart extends Graphic {
             this.tint = parseInt(`0x${this.expandedFigureDataPart.color}`);
         }
 
-        if (expandedFigureDataPart.type === 'sd') this.alpha = 0.3;
+        if (expandedFigureDataPart.type === 'sd') this.alpha = 0.3; // TODO add shadow
         if (!expandedFigureDataPart.defaultVisible) this.visible = false;
     }
 
