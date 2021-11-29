@@ -92,4 +92,6 @@ export class AvatarPart extends Graphic {
     getType() {
         return this.expandedFigureDataPart.type;
     }
+
+    // TODO si dans le updateFrame tu execute ça, quest-ce qu'il va faire s'il doit just incrementer le frameCount s'il marche par exemple ? Revoir ça
 }
