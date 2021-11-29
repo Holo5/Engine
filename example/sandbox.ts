@@ -1,7 +1,5 @@
 import { Engine } from '../src/Engine';
-import { FloorType, IVector3D, ObjectType, PositionComputer, RoomGenerator, Vector3d, WallType } from '@holo5/roombuilder';
-import { Tile } from '../src/objects/map/object/tile/Tile';
-import { Wall } from '../src/objects/map/object/wall/Wall';
+import { IVector3D, PositionComputer, RoomGenerator, Vector3d } from '@holo5/roombuilder';
 
 const sandbox = new Engine({
     width: 1000,
@@ -88,23 +86,23 @@ sandbox.init()
 
         const room = roomGenerator.generateRoom(model);
 
-        room.drawableTiles.forEach((drawableTile) => {
-            if (drawableTile.floorType !== FloorType.BORDER_UNUSABLE) {
-                let tileTextureData = sandbox.mapModule.getTileTextureData('111', drawableTile, 2);
-                let tile = new Tile(tileTextureData.texture, drawableTile, tileTextureData.offset);
-                tile.setPosition(PositionComputer.getObjectScreenPosition(drawableTile.position, ObjectType.TILE));
-
-                sandbox.stage.addChild(tile);
-
-                if (drawableTile.wallType !== WallType.NONE) {
-                    let wallTextureData = sandbox.mapModule.getWallTextureData('201', drawableTile, 2, drawableTile.wallHeight, 2);
-                    let wall = new Wall(wallTextureData.texture, drawableTile, wallTextureData.offset);
-                    wall.setPosition(PositionComputer.getObjectScreenPosition(drawableTile.position, ObjectType.WALL));
-
-                    sandbox.stage.addChild(wall);
-                }
-            }
-        });
+        // room.drawableTiles.forEach((drawableTile) => {
+        //     if (drawableTile.floorType !== FloorType.BORDER_UNUSABLE) {
+        //         let tileTextureData = sandbox.mapModule.getTileTextureData('111', drawableTile, 2);
+        //         let tile = new Tile(tileTextureData.texture, drawableTile, tileTextureData.offset);
+        //         tile.setPosition(PositionComputer.getObjectScreenPosition(drawableTile.position, ObjectType.TILE));
+        //
+        //         sandbox.stage.addChild(tile);
+        //
+        //         if (drawableTile.wallType !== WallType.NONE) {
+        //             let wallTextureData = sandbox.mapModule.getWallTextureData('201', drawableTile, 2, drawableTile.wallHeight, 2);
+        //             let wall = new Wall(wallTextureData.texture, drawableTile, wallTextureData.offset);
+        //             wall.setPosition(PositionComputer.getObjectScreenPosition(drawableTile.position, ObjectType.WALL));
+        //
+        //             sandbox.stage.addChild(wall);
+        //         }
+        //     }
+        // });
         //
         let figures = [
             'hd-3537-1385.ch-3416-92.lg-281-1415.hr-3369-46.he-3548-70.ea-3262-1427',
@@ -236,19 +234,19 @@ sandbox.init()
 
         ];
         //
-        // // for (let i = 0; i < figures.length; i++) {
-        // //     addNewFigure(figures[i], new Vector3d(
-        // //         Math.random() * 1000 + 40 | 0,
-        // //         Math.random() * 900 | 0,
-        // //         0,
-        // //     ));
-        // // }
+        for (let i = 0; i < 1; i++) {
+            addNewFigure(figures[Math.random() * figures.length | 0], new Vector3d(
+                Math.random() * 1000 + 40 | 0,
+                Math.random() * 900 | 0,
+                0,
+            ));
+        }
         //
-        addNewFigure(figures[8], new Vector3d(
-            Math.random() * 1000 + 40 | 0,
-            Math.random() * 900 | 0,
-            0,
-        ));
+        // addNewFigure(figures[8], new Vector3d(
+        //     Math.random() * 1000 + 40 | 0,
+        //     Math.random() * 900 | 0,
+        //     0,
+        // ));
 
         console.log('Children count', sandbox.stage.children.length);
     });
