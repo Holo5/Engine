@@ -7,6 +7,13 @@ import { ITween } from './tween/interface/ITween';
 import { IVector3D, Vector3d } from '@holo5/roombuilder';
 import { Tween } from './tween/Tween';
 
+/**
+ * ## Workflow (LOW)
+ * needInit() -> updateInit() (Load texture, check and updateBounds())
+ * checkBounds() (If the texture is INSIDE the stage)
+ * --> ifVisible()
+ * --> --> ifNeedFrameUpdate() --> updateFrame() (Changing texture, or direction, or another shit)
+ */
 export class Graphic extends Sprite implements IGraphic {
     public currentPosition: IVector3D;
     public bounds: Rectangle;
