@@ -26,7 +26,10 @@ export class AvatarPart extends Graphic {
         this.action = AvatarPosture.POSTURE_STAND;
         this.fixFrame = false;
 
-        if (this.expandedFigureDataPart.color !== false && this.expandedFigureDataPart.type !== 'ey') {
+        if (
+            this.expandedFigureDataPart.color !== false &&
+            this.expandedFigureDataPart.type !== 'ey'
+        ) {
             this.tint = parseInt(`0x${this.expandedFigureDataPart.color}`);
         }
 
