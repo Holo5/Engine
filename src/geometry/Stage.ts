@@ -72,7 +72,6 @@ export class Stage extends Container {
         this.rendererGeometry.reset();
 
         this.engine.renderer.render(this);
-
     }
 
     private checkHovered(now: number) {
