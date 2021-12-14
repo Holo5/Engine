@@ -38,6 +38,7 @@ export class Engine {
         this.canvasContainer.innerHTML = '';
         this.canvasContainer.append(this.renderer.view);
 
+        // TODO remove ? Yes
         console.log(window.devicePixelRatio);
 
         this.stage = new Stage(this);
