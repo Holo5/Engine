@@ -22,3 +22,10 @@ There are several basic checks in the Graphic class:
 - ```needPositionUpdate()```
 - ```needFrameUpdate()```
 
+### needInit()
+Before considering the sprite display, we need to check several things like:
+- If the Graphic class have a texture link
+- If the assets manager have the texture: (if not, an entry is created in the assets manager)
+
+Once inited, the method ``setInited(true)`` is called.
+
