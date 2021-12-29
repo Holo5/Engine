@@ -10,3 +10,15 @@ I try to recreate (from asynchronously pattern) a fully 2D engine working like a
 - Update all objects
 - Draw
 - Retry
+
+_Two levels of rendering are used and both of them come from a separate worker._
+- **LOW**: init graphics, calculate bounds, change texture, update hitmap.
+- **HIGH**: update positions & draw it on canvas, check events.
+
+## Graphic Workflow
+There are several basic checks in the Graphic class:
+- ```needInit()```
+- ```needUpdate()```
+- ```needPositionUpdate()```
+- ```needFrameUpdate()```
+
