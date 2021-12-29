@@ -45,3 +45,22 @@ positions after these checks:
 
 Once these checks done, we can call the ``updatePositions(stagePosition)`` and move everything.
 
+### needFrameUpdate()
+This method is only for few objects: animated graphics. It can be called after a direction change or stage change, etc...
+
+So we need to find a new texture and apply it. Need a better workflow and a method to set the new texture.
+
+After texture change, we need to update bounds, etc etc
+
+## More stuff
+#### Stage
+Stage is a while, powered by a worker on 2 frequency: animationRate & displayRate.
+
+You can configure 8 FPS (for the animationRate) and 144 FPS (for the displayRate).
+
+#### EventManager
+Event manager is here for catch all events (keyboard, mouse, finger on your touchscreen, etc). It will catch stage dragging, mouse hovering, mouse 
+clicking when you press the shift button for example.
+
+#### Module system
+Modules are here to extend the engine. In this case, you can add AvatarModule, MapModule, ItemModule, PetModule,...
