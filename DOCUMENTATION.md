@@ -36,3 +36,12 @@ On the high rendering, we need to update all graphic's tweens. So we need to che
 
 After these check, we can call ``update()`` method and update all Tweens. ***The update() name is too generic for tweening, I will change that.***
 
+### needPositionUpdate()
+Object are displayed, but they move sometime: on stage dragging or because of tweens (or for some other reason, but anyway). We need to update 
+positions after these checks:
+- If stage's positions is changed
+- If tweens need it
+- If a new texture need it ?
+
+Once these checks done, we can call the ``updatePositions(stagePosition)`` and move everything.
+
