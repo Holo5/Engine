@@ -29,3 +29,10 @@ Before considering the sprite display, we need to check several things like:
 
 Once inited, the method ``setInited(true)`` is called.
 
+### needUpdate()
+On the high rendering, we need to update all graphic's tweens. So we need to check:
+- If graphic have tweens
+- If tweens is not completed
+
+After these check, we can call ``update()`` method and update all Tweens. ***The update() name is too generic for tweening, I will change that.***
+
