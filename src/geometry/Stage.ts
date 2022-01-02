@@ -36,8 +36,8 @@ export class Stage extends Container {
 
     public animationTick() {
         this.children.forEach((child) => {
-            if (child.needInit()) {
-                child.updateInit(this.engine.assetsManager);
+            if (child.needInitialization()) {
+                child.initialize(this.engine.assetsManager);
             } else {
                 child.checkBounds(this.rendererGeometry.stageBounds);
 
@@ -63,7 +63,7 @@ export class Stage extends Container {
                 child.updatePosition(this.rendererGeometry.stageOffset);
             }
 
-            if (child.needUpdate()) child.update(now);
+            if (child.needTweenUpdate()) child.updateTween(now);
         });
 
         this.checkHovered(now);

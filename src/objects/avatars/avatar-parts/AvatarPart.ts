@@ -37,7 +37,7 @@ export class AvatarPart extends Graphic {
         if (!expandedFigureDataPart.defaultVisible) this.visible = false;
     }
 
-    public updateInit(resourceManager: AssetsManager): void {
+    public initialize(resourceManager: AssetsManager): void {
         if (this.getTextureLink() === null) return;
 
         if (!resourceManager.has(this.expandedFigureDataPart.assetName, this.getTextureLink())) return;
@@ -48,7 +48,7 @@ export class AvatarPart extends Graphic {
         this.visible = false;
         this.needFrameChange = true;
         this.updateBounds();
-        this.isInited = true;
+        this.setInitialized();
     }
 
     public needFrameUpdate(): boolean {
