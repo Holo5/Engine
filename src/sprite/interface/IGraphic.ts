@@ -8,6 +8,7 @@ export interface IGraphic extends Sprite {
     needInitialization(): boolean;
     initialize(resourceManager: AssetsManager): void;
     setInitialized(): void;
+    requestInitialization(): void;
 
     needFrameUpdate(): boolean;
     updateFrame(): void;

@@ -1,3 +1,4 @@
+import { AvatarPosture } from '../src/objects/avatars/enums/AvatarPosture';
 import { Engine } from '../src/Engine';
 import { IVector3D, PositionComputer, RoomGenerator, Vector3d } from '@holo5/roombuilder';
 
@@ -9,7 +10,7 @@ const sandbox = new Engine({
     mouseEventFrequency: 50,
     autoResize: true,
     maxAnimationRate: 8,
-    maxDisplayRate: 24,
+    maxDisplayRate: 80,
     images: {
         imageDomain: 'http://127.0.0.1:8082/',
         badgeDomain: 'http://127.0.0.1:8082/badges/',
@@ -35,6 +36,15 @@ function addNewFigure(figure: string, position: IVector3D) {
     something.avatarParts.forEach(child => {
         child.setPosition(position);
         sandbox.stage.addChild(child);
+
+        setTimeout(() => {
+            child.updateDirection(3);
+        }, 1500);
+
+        setTimeout(() => {
+            child.updateDirection(2);
+            child.updateAction(AvatarPosture.POSTURE_WALK);
+        }, 5000);
     });
 }
 
@@ -234,7 +244,7 @@ sandbox.init()
 
         ];
         //
-        for (let i = 0; i < 1; i++) {
+        for (let i = 0; i < 1000; i++) {
             addNewFigure(figures[Math.random() * figures.length | 0], new Vector3d(
                 Math.random() * 1000 + 40 | 0,
                 Math.random() * 900 | 0,

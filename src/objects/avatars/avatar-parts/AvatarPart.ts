@@ -9,22 +9,24 @@ export class AvatarPart extends Graphic {
     public textures: Texture[];
     public currentTextureName: string;
 
-    private needFrameChange: boolean;
     private action: string;
     private direction: number;
-    private fixFrame: number | false;
-    private currentTextureIndex: number;
+    private fixedFrame: number | false;
+    private currentFrame: number;
     private resource: LoaderResource;
+    private needToFindNewTextures: boolean;
 
     constructor(
         public expandedFigureDataPart: ExpandedFigureDataPart,
     ) {
         super(Texture.EMPTY);
 
-        this.needFrameChange = false;
         this.direction = 2;
         this.action = AvatarPosture.POSTURE_STAND;
-        this.fixFrame = false;
+        this.fixedFrame = false;
+
+        this.currentFrame = 0;
+        this.needToFindNewTextures = true;
 
         if (
             this.expandedFigureDataPart.color !== false &&
@@ -46,46 +48,52 @@ export class AvatarPart extends Graphic {
         if (this.resource.spritesheet === undefined || this.resource.spritesheet.animations === undefined) return;
 
         this.visible = false;
-        this.needFrameChange = true;
+        this.requestToFindNewTexture();
         this.updateBounds();
         this.setInitialized();
     }
 
-    public needFrameUpdate(): boolean {
-        return this.needFrameChange;
+    public findTextures() {
+        this.currentTextureName = `${this.expandedFigureDataPart.type}_${this.expandedFigureDataPart.id}_${this.action}_${this.direction}`;
+        if (this.resource?.spritesheet?.animations[this.currentTextureName] !== undefined
+            && this.resource?.spritesheet?.animations[this.currentTextureName][0] !== undefined) {
+            this.textures = this.resource.spritesheet.animations[this.currentTextureName];
+            this.visible = true;
+        } else if (this.direction === 0 || this.direction === 6 || this.direction === 7 || this.action === AvatarPosture.POSTURE_LAY) this.visible = false;
     }
 
     public updateFrame() {
-        this.currentTextureName = `${this.expandedFigureDataPart.type}_${this.expandedFigureDataPart.id}_${this.action}_${this.direction}`;
-        if (this.resource?.spritesheet?.animations[this.currentTextureName] !== undefined
-          && this.resource?.spritesheet?.animations[this.currentTextureName][0] !== undefined) {
-            this.texture = this.resource.spritesheet.animations[this.currentTextureName][0];
-            this.visible = true;
-        } else if (this.direction === 0 || this.direction === 6 || this.direction === 7 || this.action === AvatarPosture.POSTURE_LAY) this.visible = false;
-
-        if (this.fixFrame !== false) {
-            this.texture = this.textures[this.fixFrame];
+        if (this.needToFindNewTextures) {
+            this.findTextures();
+            this.needToFindNewTextures = false;
+            this.currentFrame = 0;
         }
 
-        this.needFrameChange = false;
+        if (this.fixedFrame !== false) {
+            this.texture = this.textures[this.fixedFrame];
+            this.setFrameUpdated();
+        } else {
+            this.currentFrame++;
+            this.texture = this.textures[this.currentFrame % this.textures.length];
+            this.requestFrameUpdate();
+        }
     }
 
-    updateAction(action: string, direction?: number, fixFrame: number | false = false) {
+    requestToFindNewTexture() {
+        this.needToFindNewTextures = true;
+        this.requestFrameUpdate();
+    }
+
+    updateAction(action: string, direction?: number, fixedFrame: number | false = false) {
         this.action = action;
         this.direction = direction ?? this.direction;
-        this.fixFrame = fixFrame;
-
-        this.needFrameChange = true;
+        this.fixedFrame = fixedFrame;
+        this.requestToFindNewTexture();
     }
 
     updateDirection(direction: number) {
         this.direction = direction;
-        this.needFrameChange = true;
-    }
-
-    updateExpandedFigureDataPart(expandedFigureDataPart: ExpandedFigureDataPart) {
-        this.expandedFigureDataPart = expandedFigureDataPart;
-        this.updateAction(this.action);
+        this.requestToFindNewTexture();
     }
 
     protected getTextureLink(): string {
@@ -95,6 +103,4 @@ export class AvatarPart extends Graphic {
     getType() {
         return this.expandedFigureDataPart.type;
     }
-
-    // TODO si dans le updateFrame tu execute ça, quest-ce qu'il va faire s'il doit just incrementer le frameCount s'il marche par exemple ? Revoir ça
 }

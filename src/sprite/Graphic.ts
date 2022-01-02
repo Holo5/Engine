@@ -39,6 +39,10 @@ export class Graphic extends Sprite implements IGraphic {
         this.initialized = true;
     }
 
+    requestInitialization(): void {
+        this.initialized = false;
+    }
+
     public initialize(resourceManager: AssetsManager): void {
         if (this.getTextureLink() === null) return;
 
