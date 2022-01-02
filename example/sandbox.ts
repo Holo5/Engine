@@ -1,6 +1,6 @@
 import { AvatarPosture } from '../src/objects/avatars/enums/AvatarPosture';
 import { Engine } from '../src/Engine';
-import { IVector3D, PositionComputer, RoomGenerator, Vector3d } from '@holo5/roombuilder';
+import { IVector3D, Vector3d } from '@holo5/roombuilder';
 
 const sandbox = new Engine({
     width: 1000,
@@ -10,7 +10,7 @@ const sandbox = new Engine({
     mouseEventFrequency: 50,
     autoResize: true,
     maxAnimationRate: 8,
-    maxDisplayRate: 80,
+    maxDisplayRate: 140,
     images: {
         imageDomain: 'http://127.0.0.1:8082/',
         badgeDomain: 'http://127.0.0.1:8082/badges/',
@@ -45,56 +45,60 @@ function addNewFigure(figure: string, position: IVector3D) {
             child.updateDirection(2);
             child.updateAction(AvatarPosture.POSTURE_WALK);
         }, 5000);
+
+        setTimeout(() => {
+            child.updateAction(AvatarPosture.POSTURE_WALK, 0, 3);
+        }, 8000);
     });
 }
 
 sandbox.init()
     .then(() => {
-        for (let i = 0; i < 1000; i++) {
-            // const sprite = new Badge();
-            // sprite.setPosition({ x: Math.random() * 1300 | 0, y: Math.random() * 800 | 0, z: 0 });
-            // engine.stage.addChild(sprite);
-            // sprite.addTween(new TranslateTween(sprite, 2000, { positions: { x: Math.random() * 1800 | 0, y: Math.random() * 800 | 0, z: Math.random() * 10 | 0 } }));
-            //
-            // const zoube = new PlaceholderVisualization();
-            // zoube.setPosition({ x: Math.random() * 1300 | 0, y: Math.random() * 800 | 0, z: 5 });
-            // engine.stage.addChild(zoube);
-            // zoube.addTween(new TranslateTween(zoube, 2000, { positions: { x: Math.random() * 1800 | 0, y: Math.random() * 800 | 0, z: Math.random() * 10 | 0 } }));
-        }
-
-        PositionComputer.setOffsets(0, 0);
-        let roomGenerator = new RoomGenerator();
-        let model =
-            'xxxxxxxxxxxxxxxxxxxxxxxxxxxxx\r' +
-            'x222222222222222222222222222x\r' +
-            'x222222222222222222222222222x\r' +
-            '2222222222222222222222222222x\r' +
-            'x222222222222222222222222222x\r' +
-            'x2222xxxxxx222222xxxxxxx2222x\r' +
-            'x2222xxxxxx111111xxxxxxx2222x\r' +
-            'x2222xx111111111111111xx2222x\r' +
-            'x2222xx111111111111111xx2222x\r' +
-            'x2222xx11xxx1111xxxx11xx2222x\r' +
-            'x2222xx11xxx0000xxxx11xx2222x\r' +
-            'x22222111x00000000xx11xx2222x\r' +
-            'x22222111x00000000xx11xx2222x\r' +
-            'x22222111x00000000xx11xx2222x\r' +
-            'x22222111x00000000xx11xx2222x\r' +
-            'x22222111x00000000xx11xx2222x\r' +
-            'x22222111x00000000xx11xx2222x\r' +
-            'x2222xx11xxxxxxxxxxx11xx2222x\r' +
-            'x2222xx11xxxxxxxxxxx11xx2222x\r' +
-            'x2222xx111111111111111xx2222x\r' +
-            'x2222xx111111111111111xx2222x\r' +
-            'x2222xxxxxxxxxxxxxxxxxxx2222x\r' +
-            'x2222xxxxxxxxxxxxxxxxxxx2222x\r' +
-            'x222222222222222222222222222x\r' +
-            'x222222222222222222222222222x\r' +
-            'x222222222222222222222222222x\r' +
-            'x222222222222222222222222222x\r' +
-            'xxxxxxxxxxxxxxxxxxxxxxxxxxxxx';
-
-        const room = roomGenerator.generateRoom(model);
+        // for (let i = 0; i < 1000; i++) {
+        //     // const sprite = new Badge();
+        //     // sprite.setPosition({ x: Math.random() * 1300 | 0, y: Math.random() * 800 | 0, z: 0 });
+        //     // engine.stage.addChild(sprite);
+        //     // sprite.addTween(new TranslateTween(sprite, 2000, { positions: { x: Math.random() * 1800 | 0, y: Math.random() * 800 | 0, z: Math.random() * 10 | 0 } }));
+        //     //
+        //     // const zoube = new PlaceholderVisualization();
+        //     // zoube.setPosition({ x: Math.random() * 1300 | 0, y: Math.random() * 800 | 0, z: 5 });
+        //     // engine.stage.addChild(zoube);
+        //     // zoube.addTween(new TranslateTween(zoube, 2000, { positions: { x: Math.random() * 1800 | 0, y: Math.random() * 800 | 0, z: Math.random() * 10 | 0 } }));
+        // }
+        //
+        // PositionComputer.setOffsets(0, 0);
+        // let roomGenerator = new RoomGenerator();
+        // let model =
+        //     'xxxxxxxxxxxxxxxxxxxxxxxxxxxxx\r' +
+        //     'x222222222222222222222222222x\r' +
+        //     'x222222222222222222222222222x\r' +
+        //     '2222222222222222222222222222x\r' +
+        //     'x222222222222222222222222222x\r' +
+        //     'x2222xxxxxx222222xxxxxxx2222x\r' +
+        //     'x2222xxxxxx111111xxxxxxx2222x\r' +
+        //     'x2222xx111111111111111xx2222x\r' +
+        //     'x2222xx111111111111111xx2222x\r' +
+        //     'x2222xx11xxx1111xxxx11xx2222x\r' +
+        //     'x2222xx11xxx0000xxxx11xx2222x\r' +
+        //     'x22222111x00000000xx11xx2222x\r' +
+        //     'x22222111x00000000xx11xx2222x\r' +
+        //     'x22222111x00000000xx11xx2222x\r' +
+        //     'x22222111x00000000xx11xx2222x\r' +
+        //     'x22222111x00000000xx11xx2222x\r' +
+        //     'x22222111x00000000xx11xx2222x\r' +
+        //     'x2222xx11xxxxxxxxxxx11xx2222x\r' +
+        //     'x2222xx11xxxxxxxxxxx11xx2222x\r' +
+        //     'x2222xx111111111111111xx2222x\r' +
+        //     'x2222xx111111111111111xx2222x\r' +
+        //     'x2222xxxxxxxxxxxxxxxxxxx2222x\r' +
+        //     'x2222xxxxxxxxxxxxxxxxxxx2222x\r' +
+        //     'x222222222222222222222222222x\r' +
+        //     'x222222222222222222222222222x\r' +
+        //     'x222222222222222222222222222x\r' +
+        //     'x222222222222222222222222222x\r' +
+        //     'xxxxxxxxxxxxxxxxxxxxxxxxxxxxx';
+        //
+        // const room = roomGenerator.generateRoom(model);
 
         // room.drawableTiles.forEach((drawableTile) => {
         //     if (drawableTile.floorType !== FloorType.BORDER_UNUSABLE) {
@@ -244,10 +248,10 @@ sandbox.init()
 
         ];
         //
-        for (let i = 0; i < 1000; i++) {
+        for (let i = 0; i < 3000; i++) {
             addNewFigure(figures[Math.random() * figures.length | 0], new Vector3d(
-                Math.random() * 1000 + 40 | 0,
-                Math.random() * 900 | 0,
+                Math.random() * 1200 + 70 | 0,
+                Math.random() * 800 + 100 | 0,
                 0,
             ));
         }
