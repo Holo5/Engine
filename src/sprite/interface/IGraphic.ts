@@ -12,6 +12,7 @@ export interface IGraphic extends Sprite {
     needFrameUpdate(): boolean;
     updateFrame(): void;
     setFrameUpdated(): void;
+    requestFrameUpdate(): void;
 
     needTweenUpdate(): boolean;
     updateTween(now: number): void;

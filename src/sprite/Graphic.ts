@@ -59,6 +59,10 @@ export class Graphic extends Sprite implements IGraphic {
         this.frameUpdated = true;
     }
 
+    requestFrameUpdate(): void {
+        this.frameUpdated = false;
+    }
+
     public updateFrame(): void {
         // Do nothing here, no need to update frame
         this.setFrameUpdated();
