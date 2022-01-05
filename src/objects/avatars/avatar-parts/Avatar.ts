@@ -38,10 +38,6 @@ export class Avatar extends Graphic {
         this.avatarParts = [];
     }
 
-    public needUpdate(): boolean {
-        return false;
-    }
-
     loadExpandedFigureDataParts(...expandedFigureDataParts: ExpandedFigureDataPart[]) {
         expandedFigureDataParts.forEach((expandedFigureDataPart) => {
             const avatarPart = new AvatarPart(expandedFigureDataPart);
@@ -62,16 +58,11 @@ export class Avatar extends Graphic {
         this.avatarParts.push(avatarPart);
     }
 
-    public getZIndex(): number {
-        return 0;
-    }
-
     updateAllAvatarParts() {
         this.avatarPartsContainer.children.forEach((avatarPart: AvatarPart) => {
             this.avatarPartSets.setCurrentZIndex(avatarPart, this.currentPosture, this.currentDirection);
             this.avatarPartSets.setCurrentAction(avatarPart);
         });
-        // this.render();
     }
 
     updateLeftItem(itemId: string | false) {
