@@ -1,3 +1,4 @@
+import { AssetsManager } from '../../../assets/AssetsManager';
 import { AvatarGesture } from '../enums/AvatarGesture';
 import { AvatarPart } from './AvatarPart';
 import { AvatarPartsContainer } from './AvatarPartsContainer';
@@ -8,6 +9,7 @@ import { ExpandedFigureDataPart } from '../figure-data-manager/ExpandedFigureDat
 import { GeometryData } from '../figure-data-manager/geometry/GeometryData';
 import { GeometryManager } from '../figure-data-manager/geometry/GeometryManager';
 import { Graphic } from '../../../sprite/Graphic';
+import { IVector3D } from '@holo5/roombuilder';
 
 export class Avatar extends Graphic {
 
@@ -36,6 +38,7 @@ export class Avatar extends Graphic {
         this.updateDirection(this.currentDirection);
 
         this.avatarParts = [];
+        this.addChild(this.avatarPartsContainer);
     }
 
     loadExpandedFigureDataParts(...expandedFigureDataParts: ExpandedFigureDataPart[]) {
@@ -98,6 +101,39 @@ export class Avatar extends Graphic {
         this.currentDirectionOriginal = direction;
 
         this.updateAllAvatarParts();
+    }
+
+    needInitialization(): boolean {
+        const initialization = this.avatarParts.find((avatarPart) => {
+            return avatarPart.needInitialization();
+        }) !== undefined;
+
+        return initialization;
+    }
+
+    initialize(resourceManager: AssetsManager) {
+        this.avatarParts.forEach((avatarPart) => {
+            avatarPart.initialize(resourceManager);
+        });
+    }
+
+
+    setPosition(position: IVector3D) {
+        super.setPosition(position);
+    }
+
+    needFrameUpdate(): boolean {
+        return true;
+    }
+
+    updateFrame() {
+        this.avatarParts.forEach((avatarPart) => {
+            avatarPart.updateFrame();
+        });
+    }
+
+    setPositionUpdated() {
+        super.setPositionUpdated();
     }
 
     public getOffsetX(): number {

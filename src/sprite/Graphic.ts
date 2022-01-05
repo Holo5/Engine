@@ -23,9 +23,10 @@ export class Graphic extends Sprite implements IGraphic {
         // (PIXI) By default, the renderer don't need to display this shit !
         this.visible = false;
 
-        this.currentPosition = new Vector3d();
         this.name = '';
 
+        this.currentPosition = new Vector3d();
+        this.bounds = new Rectangle();
         this.initialized = false;
         this.positionUpdated = true;
         this.frameUpdated = true;

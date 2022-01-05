@@ -35,7 +35,10 @@ export class AvatarPart extends Graphic {
             this.tint = parseInt(`0x${this.expandedFigureDataPart.color}`);
         }
 
-        if (expandedFigureDataPart.type === 'sd') this.alpha = 0.3; // TODO add shadow
+        if (expandedFigureDataPart.type === 'sd') {
+            this.alpha = 0.3;
+            this.fixedFrame = 0;
+        } // TODO add shadow
         if (!expandedFigureDataPart.defaultVisible) this.visible = false;
     }
 
@@ -68,6 +71,8 @@ export class AvatarPart extends Graphic {
             this.needToFindNewTextures = false;
             this.currentFrame = 0;
         }
+
+        if (!this.visible) return;
 
         if (this.fixedFrame !== false) {
             this.texture = this.textures[this.fixedFrame];
