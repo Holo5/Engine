@@ -1,4 +1,3 @@
-import { AvatarPosture } from '../src/objects/avatars/enums/AvatarPosture';
 import { Engine } from '../src/Engine';
 import { IVector3D, Vector3d } from '@holo5/roombuilder';
 
@@ -31,25 +30,9 @@ const sandbox = new Engine({
 });
 
 function addNewFigure(figure: string, position: IVector3D) {
-    const something = sandbox.avatarModule.buildFromFigure(figure);
+    const avatar = sandbox.avatarModule.buildFromFigure(figure);
 
-    something.avatarParts.forEach(child => {
-        child.setPosition(position);
-        sandbox.stage.addChild(child);
-
-        setTimeout(() => {
-            child.updateDirection(3);
-        }, 1500);
-
-        setTimeout(() => {
-            child.updateDirection(2);
-            child.updateAction(AvatarPosture.POSTURE_WALK);
-        }, 5000);
-
-        setTimeout(() => {
-            child.updateAction(AvatarPosture.POSTURE_WALK, 0, 3);
-        }, 8000);
-    });
+    sandbox.stage.addChild(avatar);
 }
 
 sandbox.init()
