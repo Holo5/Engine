@@ -3,6 +3,15 @@ import { AvatarPosture } from '../src/objects/avatars/enums/AvatarPosture';
 import { Engine } from '../src/Engine';
 import { IVector3D, Vector3d } from '@holo5/roombuilder';
 
+// @ts-ignore
+if (module.hot) {
+    // @ts-ignore
+    module.hot.accept(() => {
+        window.location.reload();
+    });
+
+}
+
 const sandbox = new Engine({
     width: 1000,
     height: 1000,
@@ -11,7 +20,7 @@ const sandbox = new Engine({
     mouseEventFrequency: 50,
     autoResize: true,
     maxAnimationRate: 8,
-    maxDisplayRate: 60,
+    maxDisplayRate: 140,
     images: {
         imageDomain: 'http://127.0.0.1:8082/',
         badgeDomain: 'http://127.0.0.1:8082/badges/',
@@ -244,7 +253,7 @@ sandbox.init()
 
         ];
         //
-        for (let i = 0; i < 600; i++) {
+        for (let i = 0; i < 1; i++) {
             addNewFigure(figures[Math.random() * figures.length | 0], new Vector3d(
                 Math.random() * 1200 + 70 | 0,
                 Math.random() * 800 + 100 | 0,

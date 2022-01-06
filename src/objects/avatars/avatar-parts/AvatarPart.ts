@@ -12,7 +12,6 @@ export class AvatarPart extends Graphic {
     private action: string;
     private direction: number;
     private fixedFrame: number | false;
-    private currentFrame: number;
     private resource: LoaderResource;
     private needToFindNewTextures: boolean;
 
@@ -25,7 +24,6 @@ export class AvatarPart extends Graphic {
         this.action = AvatarPosture.POSTURE_STAND;
         this.fixedFrame = false;
 
-        this.currentFrame = 0;
         this.needToFindNewTextures = true;
 
         if (
@@ -65,11 +63,10 @@ export class AvatarPart extends Graphic {
         } else if (this.direction === 0 || this.direction === 6 || this.direction === 7 || this.action === AvatarPosture.POSTURE_LAY) this.visible = false;
     }
 
-    public updateFrame() {
+    public updateFrame(frameCount: number = 0) {
         if (this.needToFindNewTextures) {
             this.findTextures();
             this.needToFindNewTextures = false;
-            this.currentFrame = 0;
         }
 
         if (!this.visible) return;
@@ -78,8 +75,7 @@ export class AvatarPart extends Graphic {
             this.texture = this.textures[this.fixedFrame];
             this.setFrameUpdated();
         } else {
-            this.currentFrame++;
-            this.texture = this.textures[this.currentFrame % this.textures.length];
+            this.texture = this.textures[frameCount % this.textures.length];
             this.requestFrameUpdate();
         }
     }

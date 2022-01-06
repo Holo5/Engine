@@ -10,6 +10,7 @@ import { GeometryData } from '../figure-data-manager/geometry/GeometryData';
 import { GeometryManager } from '../figure-data-manager/geometry/GeometryManager';
 import { Graphic } from '../../../sprite/Graphic';
 import { IVector3D } from '@holo5/roombuilder';
+import { RenderTexture, Renderer, Sprite } from 'pixi.js';
 
 export class Avatar extends Graphic {
 
@@ -21,9 +22,11 @@ export class Avatar extends Graphic {
     public currentLeftItemId: string;
 
     private avatarPartSets: AvatarPartsSets;
-    public avatarPartsContainer: AvatarPartsContainer;
+    private avatarPartsContainer: AvatarPartsContainer;
+    private frameCount: number = 0;
+    private renderer: Renderer;
 
-    public avatarParts: AvatarPart[];
+    private textures: { [id: string]: RenderTexture };
 
     constructor(
         public engine: Engine,
@@ -33,12 +36,15 @@ export class Avatar extends Graphic {
 
         this.avatarPartSets = new AvatarPartsSets(geometryManager, this);
         this.avatarPartsContainer = new AvatarPartsContainer();
+        this.frameCount = 0;
+        this.textures = {};
 
         this.anchor.set(0.5, 1);
         this.updateDirection(this.currentDirection);
+    }
 
-        this.avatarParts = [];
-        this.addChild(this.avatarPartsContainer);
+    setRenderer(renderer: Renderer) {
+        this.renderer = renderer;
     }
 
     loadExpandedFigureDataParts(...expandedFigureDataParts: ExpandedFigureDataPart[]) {
@@ -47,7 +53,7 @@ export class Avatar extends Graphic {
             this.addAvatarPart(avatarPart);
         });
 
-        this.avatarParts = this.avatarParts.sort((a, b) => {
+        this.avatarPartsContainer.children.sort((a, b) => {
             return a.zIndex - b.zIndex;
         });
     }
@@ -58,7 +64,6 @@ export class Avatar extends Graphic {
         this.avatarPartSets.setCurrentZIndex(avatarPart, this.currentPosture, this.currentDirection);
 
         this.avatarPartsContainer.addChild(avatarPart);
-        this.avatarParts.push(avatarPart);
     }
 
     updateAllAvatarParts() {
@@ -104,19 +109,19 @@ export class Avatar extends Graphic {
     }
 
     needInitialization(): boolean {
-        const initialization = this.avatarParts.find((avatarPart) => {
-            return avatarPart.needInitialization();
-        }) !== undefined;
+        return this.avatarPartsContainer.children.find(this.checkInitialized) !== undefined;
 
-        return initialization;
+    }
+
+    checkInitialized(avatarPart: AvatarPart) {
+        return avatarPart.needInitialization();
     }
 
     initialize(resourceManager: AssetsManager) {
-        this.avatarParts.forEach((avatarPart) => {
+        this.avatarPartsContainer.children.forEach((avatarPart) => {
             avatarPart.initialize(resourceManager);
         });
     }
-
 
     setPosition(position: IVector3D) {
         super.setPosition(position);
@@ -127,9 +132,25 @@ export class Avatar extends Graphic {
     }
 
     updateFrame() {
-        this.avatarParts.forEach((avatarPart) => {
-            avatarPart.updateFrame();
+        this.frameCount++;
+        this.avatarPartsContainer.children.forEach((avatarPart) => {
+            avatarPart.updateFrame(this.frameCount);
         });
+
+        if (this.frameCount > 3) this.frameCount = 0;
+
+        if (this.renderer === undefined) return;
+
+        let textName = this.currentPosture + this.currentGesture + this.currentDirection + this.frameCount;
+
+        if (this.textures[textName] === undefined) {
+            let sprite = new Sprite();
+            sprite.addChild(this.avatarPartsContainer);
+            let texture = this.renderer.generateTexture(sprite);
+            this.textures[textName] = texture;
+        }
+
+        this.texture = this.textures[textName];
     }
 
     setPositionUpdated() {
