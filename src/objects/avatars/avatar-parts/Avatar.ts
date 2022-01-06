@@ -10,7 +10,7 @@ import { GeometryData } from '../figure-data-manager/geometry/GeometryData';
 import { GeometryManager } from '../figure-data-manager/geometry/GeometryManager';
 import { Graphic } from '../../../sprite/Graphic';
 import { IVector3D } from '@holo5/roombuilder';
-import { RenderTexture, Renderer, Sprite } from 'pixi.js';
+import { Point, RenderTexture, Renderer, Sprite } from 'pixi.js';
 
 export class Avatar extends Graphic {
 
@@ -143,18 +143,24 @@ export class Avatar extends Graphic {
 
         let textName = this.currentPosture + this.currentGesture + this.currentDirection + this.frameCount;
 
+        // 90 - 130
+
         if (this.textures[textName] === undefined) {
-            let sprite = new Sprite();
-            sprite.addChild(this.avatarPartsContainer);
-            let texture = this.renderer.generateTexture(sprite);
+            let point = new Point(90, 130);
+            let regPoint = new Point(((point.x - 64) / 2), 0);
+
+            const tempSprite = new Sprite();
+            tempSprite.addChild(this.avatarPartsContainer);
+            tempSprite.calculateBounds();
+            
+            let texture = this.renderer.generateTexture(tempSprite, {
+                region: tempSprite.getBounds(),
+            });
+
             this.textures[textName] = texture;
         }
 
         this.texture = this.textures[textName];
-    }
-
-    setPositionUpdated() {
-        super.setPositionUpdated();
     }
 
     public getOffsetX(): number {
