@@ -27,7 +27,7 @@ export class Tile extends Graphic {
             stageOffset.y + this.currentPosition.y + this.offsets.y,
         );
         this.zIndex = this.getZIndex();
-        this.positionUpdate = false;
+        this.setPositionUpdated();
         this.updateBounds();
     }
 

@@ -157,6 +157,8 @@ export class Avatar extends Graphic {
                 region: tempSprite.getBounds(),
             });
 
+            console.log(tempSprite.getBounds());
+
             this.textures[textName] = texture;
         }
 

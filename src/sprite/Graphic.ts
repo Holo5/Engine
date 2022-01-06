@@ -10,7 +10,7 @@ import { Tween } from './tween/Tween';
 export class Graphic extends Sprite implements IGraphic {
     public name: string;
 
-    private currentPosition: IVector3D;
+    private _currentPosition: IVector3D;
     private bounds: Rectangle;
     private initialized: boolean;
     private positionUpdated: boolean;
@@ -25,7 +25,7 @@ export class Graphic extends Sprite implements IGraphic {
 
         this.name = '';
 
-        this.currentPosition = new Vector3d();
+        this._currentPosition = new Vector3d();
         this.bounds = new Rectangle();
         this.initialized = false;
         this.positionUpdated = true;
@@ -98,13 +98,13 @@ export class Graphic extends Sprite implements IGraphic {
     }
 
     public setPosition(position: IVector3D): void {
-        this.currentPosition = position;
+        this._currentPosition = position;
         this.requestPositionUpdate();
     }
 
     public updatePosition(stageOffset: Point): void {
-        this.position.set(stageOffset.x + this.currentPosition.x, stageOffset.y + this.currentPosition.y);
-        this.zIndex = this.currentPosition.z;
+        this.position.set(stageOffset.x + this._currentPosition.x, stageOffset.y + this._currentPosition.y);
+        this.zIndex = this._currentPosition.z;
         this.setPositionUpdated();
         this.updateBounds();
     }
@@ -114,7 +114,7 @@ export class Graphic extends Sprite implements IGraphic {
     }
 
     getCurrentPosition(): IVector3D {
-        return this.currentPosition;
+        return this._currentPosition;
     }
 
 
@@ -188,5 +188,9 @@ export class Graphic extends Sprite implements IGraphic {
     }
 
     public dispose(): void {
+    }
+
+    get currentPosition(): IVector3D {
+        return this._currentPosition;
     }
 }

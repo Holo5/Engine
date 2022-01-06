@@ -1,6 +1,16 @@
 import { AvatarPosture } from '../src/objects/avatars/enums/AvatarPosture';
 import { Engine } from '../src/Engine';
-import { IVector3D, Vector3d } from '@holo5/roombuilder';
+import {
+    FloorType,
+    IVector3D,
+    ObjectType,
+    PositionComputer,
+    RoomGenerator,
+    Vector3d,
+    WallType,
+} from '@holo5/roombuilder';
+import { Tile } from '../src/objects/map/object/tile/Tile';
+import { Wall } from '../src/objects/map/object/wall/Wall';
 
 // @ts-ignore
 if (module.hot) {
@@ -71,40 +81,66 @@ sandbox.init()
         //     // zoube.addTween(new TranslateTween(zoube, 2000, { positions: { x: Math.random() * 1800 | 0, y: Math.random() * 800 | 0, z: Math.random() * 10 | 0 } }));
         // }
         //
+        PositionComputer.setOffsets(0, 0);
+        let roomGenerator = new RoomGenerator();
+        let model =
+            'xxxxxxxxxxxxxxxxxxxxxxxxxxxxx\r' +
+            'x222222222222222222222222222x\r' +
+            'x222222222222222222222222222x\r' +
+            '2222222222222222222222222222x\r' +
+            'x222222222222222222222222222x\r' +
+            'x2222xxxxxx222222xxxxxxx2222x\r' +
+            'x2222xxxxxx111111xxxxxxx2222x\r' +
+            'x2222xx111111111111111xx2222x\r' +
+            'x2222xx111111111111111xx2222x\r' +
+            'x2222xx11xxx1111xxxx11xx2222x\r' +
+            'x2222xx11xxx0000xxxx11xx2222x\r' +
+            'x22222111x00000000xx11xx2222x\r' +
+            'x22222111x00000000xx11xx2222x\r' +
+            'x22222111x00000000xx11xx2222x\r' +
+            'x22222111x00000000xx11xx2222x\r' +
+            'x22222111x00000000xx11xx2222x\r' +
+            'x22222111x00000000xx11xx2222x\r' +
+            'x2222xx11xxxxxxxxxxx11xx2222x\r' +
+            'x2222xx11xxxxxxxxxxx11xx2222x\r' +
+            'x2222xx111111111111111xx2222x\r' +
+            'x2222xx111111111111111xx2222x\r' +
+            'x2222xxxxxxxxxxxxxxxxxxx2222x\r' +
+            'x2222xxxxxxxxxxxxxxxxxxx2222x\r' +
+            'x222222222222222222222222222x\r' +
+            'x222222222222222222222222222x\r' +
+            'x222222222222222222222222222x\r' +
+            'x222222222222222222222222222x\r' +
+            'xxxxxxxxxxxxxxxxxxxxxxxxxxxxx';
+
+        const room = roomGenerator.generateRoom(model);
+
+        room.drawableTiles.forEach((drawableTile) => {
+            if (drawableTile.floorType !== FloorType.BORDER_UNUSABLE) {
+                let tileTextureData = sandbox.mapModule.getTileTextureData('111', drawableTile, 2);
+                let tile = new Tile(tileTextureData.texture, drawableTile, tileTextureData.offset);
+                tile.setPosition(PositionComputer.getObjectScreenPosition(drawableTile.position, ObjectType.TILE));
+
+                sandbox.stage.addChild(tile);
+
+                if (drawableTile.wallType !== WallType.NONE) {
+                    let wallTextureData = sandbox.mapModule.getWallTextureData('201', drawableTile, 2, drawableTile.wallHeight, 2);
+                    let wall = new Wall(wallTextureData.texture, drawableTile, wallTextureData.offset);
+                    wall.setPosition(PositionComputer.getObjectScreenPosition(drawableTile.position, ObjectType.WALL));
+
+                    sandbox.stage.addChild(wall);
+                }
+            }
+        });
+
         // PositionComputer.setOffsets(0, 0);
         // let roomGenerator = new RoomGenerator();
         // let model =
-        //     'xxxxxxxxxxxxxxxxxxxxxxxxxxxxx\r' +
-        //     'x222222222222222222222222222x\r' +
-        //     'x222222222222222222222222222x\r' +
-        //     '2222222222222222222222222222x\r' +
-        //     'x222222222222222222222222222x\r' +
-        //     'x2222xxxxxx222222xxxxxxx2222x\r' +
-        //     'x2222xxxxxx111111xxxxxxx2222x\r' +
-        //     'x2222xx111111111111111xx2222x\r' +
-        //     'x2222xx111111111111111xx2222x\r' +
-        //     'x2222xx11xxx1111xxxx11xx2222x\r' +
-        //     'x2222xx11xxx0000xxxx11xx2222x\r' +
-        //     'x22222111x00000000xx11xx2222x\r' +
-        //     'x22222111x00000000xx11xx2222x\r' +
-        //     'x22222111x00000000xx11xx2222x\r' +
-        //     'x22222111x00000000xx11xx2222x\r' +
-        //     'x22222111x00000000xx11xx2222x\r' +
-        //     'x22222111x00000000xx11xx2222x\r' +
-        //     'x2222xx11xxxxxxxxxxx11xx2222x\r' +
-        //     'x2222xx11xxxxxxxxxxx11xx2222x\r' +
-        //     'x2222xx111111111111111xx2222x\r' +
-        //     'x2222xx111111111111111xx2222x\r' +
-        //     'x2222xxxxxxxxxxxxxxxxxxx2222x\r' +
-        //     'x2222xxxxxxxxxxxxxxxxxxx2222x\r' +
-        //     'x222222222222222222222222222x\r' +
-        //     'x222222222222222222222222222x\r' +
-        //     'x222222222222222222222222222x\r' +
-        //     'x222222222222222222222222222x\r' +
-        //     'xxxxxxxxxxxxxxxxxxxxxxxxxxxxx';
+        //     'xx\r' +
+        //     'x1\r';
         //
         // const room = roomGenerator.generateRoom(model);
-
+        //
         // room.drawableTiles.forEach((drawableTile) => {
         //     if (drawableTile.floorType !== FloorType.BORDER_UNUSABLE) {
         //         let tileTextureData = sandbox.mapModule.getTileTextureData('111', drawableTile, 2);
@@ -113,16 +149,16 @@ sandbox.init()
         //
         //         sandbox.stage.addChild(tile);
         //
-        //         if (drawableTile.wallType !== WallType.NONE) {
-        //             let wallTextureData = sandbox.mapModule.getWallTextureData('201', drawableTile, 2, drawableTile.wallHeight, 2);
-        //             let wall = new Wall(wallTextureData.texture, drawableTile, wallTextureData.offset);
-        //             wall.setPosition(PositionComputer.getObjectScreenPosition(drawableTile.position, ObjectType.WALL));
-        //
-        //             sandbox.stage.addChild(wall);
-        //         }
+        //         // if (drawableTile.wallType !== WallType.NONE) {
+        //         //     let wallTextureData = sandbox.mapModule.getWallTextureData('201', drawableTile, 2, drawableTile.wallHeight, 2);
+        //         //     let wall = new Wall(wallTextureData.texture, drawableTile, wallTextureData.offset);
+        //         //     wall.setPosition(PositionComputer.getObjectScreenPosition(drawableTile.position, ObjectType.WALL));
+        //         //
+        //         //     sandbox.stage.addChild(wall);
+        //         // }
         //     }
         // });
-        //
+
         let figures = [
             'hd-3537-1385.ch-3416-92.lg-281-1415.hr-3369-46.he-3548-70.ea-3262-1427',
             'hd-3536-4.lg-3320-96.sh-908-1326.hr-3020-1349.he-3295-1423.ea-3484-1321.ca-3464-1423.wa-3212-86.cp-3402-1332',
@@ -253,12 +289,8 @@ sandbox.init()
 
         ];
         //
-        for (let i = 0; i < 100; i++) {
-            addNewFigure(figures[Math.random() * figures.length | 0], new Vector3d(
-                Math.random() * 1200 + 70 | 0,
-                Math.random() * 800 + 100 | 0,
-                0,
-            ));
+        for (let i = 0; i < 1; i++) {
+            addNewFigure(figures[Math.random() * figures.length | 0], PositionComputer.getObjectScreenPosition(new Vector3d(1, 1, 2), ObjectType.AVATAR));
         }
         //
         // addNewFigure(figures[8], new Vector3d(
