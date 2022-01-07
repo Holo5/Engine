@@ -10,7 +10,7 @@ import { GeometryData } from '../figure-data-manager/geometry/GeometryData';
 import { GeometryManager } from '../figure-data-manager/geometry/GeometryManager';
 import { Graphic } from '../../../sprite/Graphic';
 import { IVector3D } from '@holo5/roombuilder';
-import { Point, RenderTexture, Renderer, Sprite } from 'pixi.js';
+import { Point, Rectangle, RenderTexture, Renderer, Sprite } from 'pixi.js';
 
 export class Avatar extends Graphic {
 
@@ -154,7 +154,7 @@ export class Avatar extends Graphic {
             tempSprite.calculateBounds();
             
             let texture = this.renderer.generateTexture(tempSprite, {
-                region: tempSprite.getBounds(),
+                region: new Rectangle(0, -100, 70, 110),
             });
 
             console.log(tempSprite.getBounds());
