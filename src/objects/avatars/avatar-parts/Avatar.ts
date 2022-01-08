@@ -144,28 +144,21 @@ export class Avatar extends Graphic {
         let textName = this.currentPosture + this.currentGesture + this.currentDirection + this.frameCount;
 
         if (this.textures[textName] === undefined) {
-            // let point = new Point(90, 130);
-            // let regPoint = new Point(((point.x - 64) / 2), 0);
-            //
-            // const tempSprite = new Sprite();
-            // tempSprite.addChild(this.avatarPartsContainer);
-            // tempSprite.calculateBounds();
-
-            let texture = this.renderer.generateTexture(this.avatarPartsContainer, {
-                region: new Rectangle(0, -100, 70, 110),
+            this.textures[textName] = this.renderer.generateTexture(this.avatarPartsContainer, {
+                region: this.getTextureRegion(),
             });
 
-            this.textures[textName] = texture;
+            console.log(this.getTextureRegion());
         }
 
         this.texture = this.textures[textName];
     }
 
-    public getOffsetX(): number {
-        return 0;
-    }
+    private getTextureRegion() {
+        if (this.currentPosture === AvatarPosture.POSTURE_LAY) {
+            return new Rectangle(-8, -128, 80, 128);
+        }
 
-    public getOffsetY(): number {
-        return 20;
+        return new Rectangle(-13, -115, 90, 130);
     }
 }
