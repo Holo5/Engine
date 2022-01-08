@@ -53,7 +53,7 @@ function addNewFigure(figure: string, position: IVector3D) {
     const avatar = sandbox.avatarModule.buildFromFigure('hd-180-1.ch-255-66.lg-280-110.sh-305-62.ha-3140-110.hr-828-61');
     avatar.setPosition(position);
     avatar.updateDirection(2);
-    avatar.updatePosture(AvatarPosture.POSTURE_WALK);
+    avatar.updatePosture(AvatarPosture.POSTURE_LAY);
 
     sandbox.stage.addChild(avatar);
     //

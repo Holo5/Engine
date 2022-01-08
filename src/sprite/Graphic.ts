@@ -117,7 +117,6 @@ export class Graphic extends Sprite implements IGraphic {
         return this._currentPosition;
     }
 
-
     protected getTextureLink(): string {
         return null;
     }
@@ -197,7 +196,6 @@ export class Graphic extends Sprite implements IGraphic {
     getXOffset(): number {
         return 0;
     }
-
 
     getYOffset(): number {
         return 0;

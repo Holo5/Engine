@@ -154,9 +154,13 @@ export class Avatar extends Graphic {
 
     private getTextureRegion() {
         if (this.currentPosture === AvatarPosture.POSTURE_LAY) {
-            return new Rectangle(-8, -128, 80, 128);
+            return new Rectangle(-(GeometryData.sizes.horizontal.width) / 2, -GeometryData.sizes.horizontal.height + 15, 128, 80);
         }
 
-        return new Rectangle(-13, -115, 90, 130);
+        return new Rectangle(-13, -117, 90, 130);
+    }
+
+    getYOffset(): number {
+        return 32;
     }
 }
