@@ -147,8 +147,6 @@ export class Avatar extends Graphic {
             this.textures[textName] = this.renderer.generateTexture(this.avatarPartsContainer, {
                 region: this.getTextureRegion(),
             });
-
-            console.log(this.getTextureRegion());
         }
 
         this.texture = this.textures[textName];
