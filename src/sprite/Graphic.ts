@@ -103,7 +103,7 @@ export class Graphic extends Sprite implements IGraphic {
     }
 
     public updatePosition(stageOffset: Point): void {
-        this.position.set(stageOffset.x + this._currentPosition.x, stageOffset.y + this._currentPosition.y);
+        this.position.set(stageOffset.x + this._currentPosition.x + this.getXOffset(), stageOffset.y + this._currentPosition.y + this.getYOffset());
         this.zIndex = this._currentPosition.z;
         this.setPositionUpdated();
         this.updateBounds();
@@ -192,5 +192,14 @@ export class Graphic extends Sprite implements IGraphic {
 
     get currentPosition(): IVector3D {
         return this._currentPosition;
+    }
+
+    getXOffset(): number {
+        return 0;
+    }
+
+
+    getYOffset(): number {
+        return 0;
     }
 }
