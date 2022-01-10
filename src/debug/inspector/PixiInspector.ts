@@ -54,7 +54,7 @@ export class PixiInspector {
             let listElement = this.createListElement(`${child.constructor.name} (${child.name})`);
             this.mainList.appendChild(listElement);
 
-            listElement.onclick = ()=> {
+            listElement.onclick = () => {
                 child.filters = [
                     new DebugFilter(0x990012),
                 ];
