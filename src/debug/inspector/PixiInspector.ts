@@ -1,9 +1,11 @@
 import { Container } from 'pixi.js';
+import { DebugFilter } from '../filters/DebugFilter';
 
 export class PixiInspector {
 
     private container: Container;
     private mainBoxStyle: string;
+    private mainList: HTMLElement;
 
     constructor(container: Container, styleOverride?: string) {
         this.container = container;
@@ -28,19 +30,43 @@ export class PixiInspector {
         const mainBox = document.createElement('div');
         mainBox.setAttribute('style', this.mainBoxStyle);
 
-        const mainList = document.createElement('div');
-        mainList.setAttribute('style', 'height: 500px; background-color: rgba(0, 0, 0, 0.3); border-radius: 5px;');
+        this.mainList = document.createElement('div');
+        this.mainList.setAttribute('style', 'height: 500px; background-color: rgba(0, 0, 0, 0.3); border-radius: 5px; display: flex; flex-direction: column; overflow: auto;');
 
         const mainButtonBox = document.createElement('div');
         mainButtonBox.setAttribute('style', 'margin-top: 5px;');
 
         const refreshButton = document.createElement('button');
         refreshButton.innerText = 'Refresh';
+        refreshButton.onclick = this.refresh.bind(this);
 
-        mainBox.appendChild(mainList);
+        mainBox.appendChild(this.mainList);
         mainButtonBox.appendChild(refreshButton);
         mainBox.appendChild(mainButtonBox);
 
         document.body.appendChild(mainBox);
+    }
+
+    public refresh() {
+        this.mainList.innerHTML = '';
+
+        this.container.children.forEach(child => {
+            let listElement = this.createListElement(`${child.constructor.name} (${child.name})`);
+            this.mainList.appendChild(listElement);
+
+            listElement.onclick = ()=> {
+                child.filters = [
+                    new DebugFilter(0x990012),
+                ];
+            };
+        });
+    }
+
+    private createListElement(text: string) {
+        const listElement = document.createElement('div');
+        listElement.innerText = text;
+        listElement.setAttribute('style', 'background-color: rgba(0, 0, 0, 0.6); margin: 3px; padding: 5px; border-radius: 5px; cursor: pointer;');
+
+        return listElement;
     }
 }
