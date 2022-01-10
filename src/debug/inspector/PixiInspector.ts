@@ -40,8 +40,16 @@ export class PixiInspector {
         refreshButton.innerText = 'Refresh';
         refreshButton.onclick = this.refresh.bind(this);
 
+        const searchBox = document.createElement('input');
+        searchBox.placeholder = 'Search...';
+
+        searchBox.onkeyup = () => {
+            console.log('Search !', searchBox.value);
+        };
+
         mainBox.appendChild(this.mainList);
         mainButtonBox.appendChild(refreshButton);
+        mainButtonBox.appendChild(searchBox);
         mainBox.appendChild(mainButtonBox);
 
         document.body.appendChild(mainBox);
@@ -58,6 +66,14 @@ export class PixiInspector {
                 child.filters = [
                     new DebugFilter(0x990012),
                 ];
+            };
+
+            listElement.onmouseenter = () => {
+                child.position.y -= 50;
+            };
+
+            listElement.onmouseleave = () => {
+                child.position.y += 50;
             };
         });
     }
