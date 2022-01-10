@@ -53,6 +53,7 @@ export class AvatarModule {
         // expandedFigureDataParts.push(new ExpandedFigureDataPart('1', 'hh_human_item', 0, 'li', false, AvatarGesture.GESTURE_SIGNAL));
 
         const avatar = new Avatar(this.engine, this.geometryManager);
+        avatar.setRenderer(this.engine.renderer);
         avatar.loadExpandedFigureDataParts(...expandedFigureDataParts);
 
         return avatar;

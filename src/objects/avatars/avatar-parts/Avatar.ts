@@ -1,3 +1,4 @@
+import { AssetsManager } from '../../../assets/AssetsManager';
 import { AvatarGesture } from '../enums/AvatarGesture';
 import { AvatarPart } from './AvatarPart';
 import { AvatarPartsContainer } from './AvatarPartsContainer';
@@ -8,6 +9,8 @@ import { ExpandedFigureDataPart } from '../figure-data-manager/ExpandedFigureDat
 import { GeometryData } from '../figure-data-manager/geometry/GeometryData';
 import { GeometryManager } from '../figure-data-manager/geometry/GeometryManager';
 import { Graphic } from '../../../sprite/Graphic';
+import { IVector3D } from '@holo5/roombuilder';
+import { Rectangle, RenderTexture, Renderer } from 'pixi.js';
 
 export class Avatar extends Graphic {
 
@@ -19,9 +22,11 @@ export class Avatar extends Graphic {
     public currentLeftItemId: string;
 
     private avatarPartSets: AvatarPartsSets;
-    public avatarPartsContainer: AvatarPartsContainer;
+    private avatarPartsContainer: AvatarPartsContainer;
+    private frameCount: number = 0;
+    private renderer: Renderer;
 
-    public avatarParts: AvatarPart[];
+    private textures: { [id: string]: RenderTexture };
 
     constructor(
         public engine: Engine,
@@ -31,15 +36,15 @@ export class Avatar extends Graphic {
 
         this.avatarPartSets = new AvatarPartsSets(geometryManager, this);
         this.avatarPartsContainer = new AvatarPartsContainer();
+        this.frameCount = 0;
+        this.textures = {};
 
         this.anchor.set(0.5, 1);
         this.updateDirection(this.currentDirection);
-
-        this.avatarParts = [];
     }
 
-    public needUpdate(): boolean {
-        return false;
+    setRenderer(renderer: Renderer) {
+        this.renderer = renderer;
     }
 
     loadExpandedFigureDataParts(...expandedFigureDataParts: ExpandedFigureDataPart[]) {
@@ -48,7 +53,7 @@ export class Avatar extends Graphic {
             this.addAvatarPart(avatarPart);
         });
 
-        this.avatarParts = this.avatarParts.sort((a, b) => {
+        this.avatarPartsContainer.children.sort((a, b) => {
             return a.zIndex - b.zIndex;
         });
     }
@@ -59,11 +64,6 @@ export class Avatar extends Graphic {
         this.avatarPartSets.setCurrentZIndex(avatarPart, this.currentPosture, this.currentDirection);
 
         this.avatarPartsContainer.addChild(avatarPart);
-        this.avatarParts.push(avatarPart);
-    }
-
-    public getZIndex(): number {
-        return 0;
     }
 
     updateAllAvatarParts() {
@@ -71,7 +71,6 @@ export class Avatar extends Graphic {
             this.avatarPartSets.setCurrentZIndex(avatarPart, this.currentPosture, this.currentDirection);
             this.avatarPartSets.setCurrentAction(avatarPart);
         });
-        // this.render();
     }
 
     updateLeftItem(itemId: string | false) {
@@ -109,11 +108,59 @@ export class Avatar extends Graphic {
         this.updateAllAvatarParts();
     }
 
-    public getOffsetX(): number {
-        return 0;
+    needInitialization(): boolean {
+        return this.avatarPartsContainer.children.find(this.checkInitialized) !== undefined;
+
     }
 
-    public getOffsetY(): number {
-        return 20;
+    checkInitialized(avatarPart: AvatarPart) {
+        return avatarPart.needInitialization();
+    }
+
+    initialize(resourceManager: AssetsManager) {
+        this.avatarPartsContainer.children.forEach((avatarPart) => {
+            avatarPart.initialize(resourceManager);
+        });
+    }
+
+    setPosition(position: IVector3D) {
+        super.setPosition(position);
+    }
+
+    needFrameUpdate(): boolean {
+        return true;
+    }
+
+    updateFrame() {
+        this.frameCount++;
+        this.avatarPartsContainer.children.forEach((avatarPart) => {
+            avatarPart.updateFrame(this.frameCount);
+        });
+
+        if (this.frameCount > 3) this.frameCount = 0;
+
+        if (this.renderer === undefined) return;
+
+        let textName = this.currentPosture + this.currentGesture + this.currentDirection + this.frameCount;
+
+        if (this.textures[textName] === undefined) {
+            this.textures[textName] = this.renderer.generateTexture(this.avatarPartsContainer, {
+                region: this.getTextureRegion(),
+            });
+        }
+
+        this.texture = this.textures[textName];
+    }
+
+    private getTextureRegion() {
+        if (this.currentPosture === AvatarPosture.POSTURE_LAY) {
+            return new Rectangle(-(GeometryData.sizes.horizontal.width) / 2, -GeometryData.sizes.horizontal.height + 15, 128, 80);
+        }
+
+        return new Rectangle(-13, -117, 90, 130);
+    }
+
+    getYOffset(): number {
+        return 32;
     }
 }

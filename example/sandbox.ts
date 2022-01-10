@@ -1,5 +1,25 @@
+import { AvatarPosture } from '../src/objects/avatars/enums/AvatarPosture';
 import { Engine } from '../src/Engine';
-import { IVector3D, PositionComputer, RoomGenerator, Vector3d } from '@holo5/roombuilder';
+import {
+    FloorType,
+    IVector3D,
+    ObjectType,
+    PositionComputer,
+    RoomGenerator,
+    Vector3d,
+    WallType,
+} from '@holo5/roombuilder';
+import { Tile } from '../src/objects/map/object/tile/Tile';
+import { Wall } from '../src/objects/map/object/wall/Wall';
+
+// @ts-ignore
+if (module.hot) {
+    // @ts-ignore
+    module.hot.accept(() => {
+        window.location.reload();
+    });
+
+}
 
 const sandbox = new Engine({
     width: 1000,
@@ -9,7 +29,7 @@ const sandbox = new Engine({
     mouseEventFrequency: 50,
     autoResize: true,
     maxAnimationRate: 8,
-    maxDisplayRate: 24,
+    maxDisplayRate: 140,
     images: {
         imageDomain: 'http://127.0.0.1:8082/',
         badgeDomain: 'http://127.0.0.1:8082/badges/',
@@ -30,28 +50,37 @@ const sandbox = new Engine({
 });
 
 function addNewFigure(figure: string, position: IVector3D) {
-    const something = sandbox.avatarModule.buildFromFigure(figure);
+    const avatar = sandbox.avatarModule.buildFromFigure('hd-180-1.ch-255-66.lg-280-110.sh-305-62.ha-3140-110.hr-828-61');
+    avatar.setPosition(position);
+    avatar.updateDirection(2);
+    avatar.updatePosture(AvatarPosture.POSTURE_LAY);
 
-    something.avatarParts.forEach(child => {
-        child.setPosition(position);
-        sandbox.stage.addChild(child);
-    });
+    sandbox.stage.addChild(avatar);
+    //
+    // setTimeout(() => {
+    //
+    // }, 2000);
+    //
+    // setTimeout(() => {
+    //     avatar.updateGesture(AvatarGesture.GESTURE_SMILE);
+    //     avatar.updateDirection(4);
+    // }, 5000);
 }
 
 sandbox.init()
     .then(() => {
-        for (let i = 0; i < 1000; i++) {
-            // const sprite = new Badge();
-            // sprite.setPosition({ x: Math.random() * 1300 | 0, y: Math.random() * 800 | 0, z: 0 });
-            // engine.stage.addChild(sprite);
-            // sprite.addTween(new TranslateTween(sprite, 2000, { positions: { x: Math.random() * 1800 | 0, y: Math.random() * 800 | 0, z: Math.random() * 10 | 0 } }));
-            //
-            // const zoube = new PlaceholderVisualization();
-            // zoube.setPosition({ x: Math.random() * 1300 | 0, y: Math.random() * 800 | 0, z: 5 });
-            // engine.stage.addChild(zoube);
-            // zoube.addTween(new TranslateTween(zoube, 2000, { positions: { x: Math.random() * 1800 | 0, y: Math.random() * 800 | 0, z: Math.random() * 10 | 0 } }));
-        }
-
+        // for (let i = 0; i < 1000; i++) {
+        //     // const sprite = new Badge();
+        //     // sprite.setPosition({ x: Math.random() * 1300 | 0, y: Math.random() * 800 | 0, z: 0 });
+        //     // engine.stage.addChild(sprite);
+        //     // sprite.addTween(new TranslateTween(sprite, 2000, { positions: { x: Math.random() * 1800 | 0, y: Math.random() * 800 | 0, z: Math.random() * 10 | 0 } }));
+        //     //
+        //     // const zoube = new PlaceholderVisualization();
+        //     // zoube.setPosition({ x: Math.random() * 1300 | 0, y: Math.random() * 800 | 0, z: 5 });
+        //     // engine.stage.addChild(zoube);
+        //     // zoube.addTween(new TranslateTween(zoube, 2000, { positions: { x: Math.random() * 1800 | 0, y: Math.random() * 800 | 0, z: Math.random() * 10 | 0 } }));
+        // }
+        //
         PositionComputer.setOffsets(0, 0);
         let roomGenerator = new RoomGenerator();
         let model =
@@ -86,6 +115,32 @@ sandbox.init()
 
         const room = roomGenerator.generateRoom(model);
 
+        room.drawableTiles.forEach((drawableTile) => {
+            if (drawableTile.floorType !== FloorType.BORDER_UNUSABLE) {
+                let tileTextureData = sandbox.mapModule.getTileTextureData('111', drawableTile, 2);
+                let tile = new Tile(tileTextureData.texture, drawableTile, tileTextureData.offset);
+                tile.setPosition(PositionComputer.getObjectScreenPosition(drawableTile.position, ObjectType.TILE));
+
+                sandbox.stage.addChild(tile);
+
+                if (drawableTile.wallType !== WallType.NONE) {
+                    let wallTextureData = sandbox.mapModule.getWallTextureData('201', drawableTile, 2, drawableTile.wallHeight, 2);
+                    let wall = new Wall(wallTextureData.texture, drawableTile, wallTextureData.offset);
+                    wall.setPosition(PositionComputer.getObjectScreenPosition(drawableTile.position, ObjectType.WALL));
+
+                    sandbox.stage.addChild(wall);
+                }
+            }
+        });
+
+        // PositionComputer.setOffsets(0, 0);
+        // let roomGenerator = new RoomGenerator();
+        // let model =
+        //     'xx\r' +
+        //     'x1\r';
+        //
+        // const room = roomGenerator.generateRoom(model);
+        //
         // room.drawableTiles.forEach((drawableTile) => {
         //     if (drawableTile.floorType !== FloorType.BORDER_UNUSABLE) {
         //         let tileTextureData = sandbox.mapModule.getTileTextureData('111', drawableTile, 2);
@@ -94,16 +149,16 @@ sandbox.init()
         //
         //         sandbox.stage.addChild(tile);
         //
-        //         if (drawableTile.wallType !== WallType.NONE) {
-        //             let wallTextureData = sandbox.mapModule.getWallTextureData('201', drawableTile, 2, drawableTile.wallHeight, 2);
-        //             let wall = new Wall(wallTextureData.texture, drawableTile, wallTextureData.offset);
-        //             wall.setPosition(PositionComputer.getObjectScreenPosition(drawableTile.position, ObjectType.WALL));
-        //
-        //             sandbox.stage.addChild(wall);
-        //         }
+        //         // if (drawableTile.wallType !== WallType.NONE) {
+        //         //     let wallTextureData = sandbox.mapModule.getWallTextureData('201', drawableTile, 2, drawableTile.wallHeight, 2);
+        //         //     let wall = new Wall(wallTextureData.texture, drawableTile, wallTextureData.offset);
+        //         //     wall.setPosition(PositionComputer.getObjectScreenPosition(drawableTile.position, ObjectType.WALL));
+        //         //
+        //         //     sandbox.stage.addChild(wall);
+        //         // }
         //     }
         // });
-        //
+
         let figures = [
             'hd-3537-1385.ch-3416-92.lg-281-1415.hr-3369-46.he-3548-70.ea-3262-1427',
             'hd-3536-4.lg-3320-96.sh-908-1326.hr-3020-1349.he-3295-1423.ea-3484-1321.ca-3464-1423.wa-3212-86.cp-3402-1332',
@@ -235,11 +290,7 @@ sandbox.init()
         ];
         //
         for (let i = 0; i < 1; i++) {
-            addNewFigure(figures[Math.random() * figures.length | 0], new Vector3d(
-                Math.random() * 1000 + 40 | 0,
-                Math.random() * 900 | 0,
-                0,
-            ));
+            addNewFigure(figures[Math.random() * figures.length | 0], PositionComputer.getObjectScreenPosition(new Vector3d(2, 1, 2), ObjectType.AVATAR));
         }
         //
         // addNewFigure(figures[8], new Vector3d(

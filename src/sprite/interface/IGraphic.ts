@@ -5,33 +5,31 @@ import { IVector3D } from '@holo5/roombuilder';
 import { Point, Rectangle, Sprite } from 'pixi.js';
 
 export interface IGraphic extends Sprite {
-    bounds: Rectangle;
-    currentPosition: IVector3D;
-
-    needInit(): boolean;
+    needInitialization(): boolean;
+    initialize(resourceManager: AssetsManager): void;
+    setInitialized(): void;
+    requestInitialization(): void;
 
     needFrameUpdate(): boolean;
+    updateFrame(): void;
+    setFrameUpdated(): void;
+    requestFrameUpdate(): void;
+
+    needTweenUpdate(): boolean;
+    updateTween(now: number): void;
 
     needPositionUpdate(): boolean;
-
-    needUpdate(): boolean;
-
-    updateInit(resourceManager: AssetsManager): void;
-
-    updateFrame(): void;
-
     updatePosition(point: Point): void;
+    setPositionUpdated(): void;
+    requestPositionUpdate(): void;
+    setPosition(position: IVector3D): void;
+    getCurrentPosition(): IVector3D;
 
+    getBounds(): Rectangle;
     updateBounds(): void;
-
-    update(now: number): void;
-
     checkBounds(bounds: Rectangle): void;
 
     checkEvents(currentEvents: ICurrentEvents): boolean;
-
-    setPosition(position: IVector3D): void;
-
     getEventCategory(): EventCategory;
 
     dispose(): void;

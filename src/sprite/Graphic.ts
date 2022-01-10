@@ -7,87 +7,122 @@ import { ITween } from './tween/interface/ITween';
 import { IVector3D, Vector3d } from '@holo5/roombuilder';
 import { Tween } from './tween/Tween';
 
-/**
- * ## Workflow (LOW)
- * needInit() -> updateInit() (Load texture, check and updateBounds())
- * checkBounds() (If the texture is INSIDE the stage)
- * --> ifVisible()
- * --> --> ifNeedFrameUpdate() --> updateFrame() (Changing texture, or direction, or another shit)
- */
 export class Graphic extends Sprite implements IGraphic {
-    public currentPosition: IVector3D;
-    public bounds: Rectangle;
     public name: string;
 
-    protected isInited: boolean;
-    protected positionUpdate: boolean;
-
+    private _currentPosition: IVector3D;
+    private bounds: Rectangle;
+    private initialized: boolean;
+    private positionUpdated: boolean;
+    private frameUpdated: boolean;
     private tween: ITween;
 
     constructor(texture?: Texture) {
+        // (PIXI) By default, set an empty texture
         super(texture ?? Texture.EMPTY);
-
+        // (PIXI) By default, the renderer don't need to display this shit !
         this.visible = false;
 
-        this.currentPosition = new Vector3d();
         this.name = '';
-        this.isInited = false;
+
+        this._currentPosition = new Vector3d();
+        this.bounds = new Rectangle();
+        this.initialized = false;
+        this.positionUpdated = true;
+        this.frameUpdated = true;
     }
 
-    public needInit() {
-        return !this.isInited;
+    public needInitialization() {
+        return !this.initialized;
     }
 
-    public needFrameUpdate(): boolean {
-        return false;
+    setInitialized(): void {
+        this.initialized = true;
     }
 
-    public needPositionUpdate(): boolean {
-        return this.positionUpdate;
+    requestInitialization(): void {
+        this.initialized = false;
     }
 
-    public updateInit(resourceManager: AssetsManager): void {
+    public initialize(resourceManager: AssetsManager): void {
         if (this.getTextureLink() === null) return;
 
         if (resourceManager.has(this.name, this.getTextureLink())) {
             this.texture = resourceManager.get(this.name).texture;
             this.updateBounds();
             this.generateHitMap();
-            this.isInited = true;
+
+            this.setInitialized();
         }
     }
 
-    public needUpdate(): boolean {
+    public needFrameUpdate(): boolean {
+        return !this.frameUpdated;
+    }
+
+    setFrameUpdated(): void {
+        this.frameUpdated = true;
+    }
+
+    requestFrameUpdate(): void {
+        this.frameUpdated = false;
+    }
+
+    public updateFrame(): void {
+        // Do nothing here, no need to update frame
+        this.setFrameUpdated();
+    }
+
+    needTweenUpdate(): boolean {
         return this.tween !== undefined && !this.tween.complete;
+    }
+
+    updateTween(now: number): void {
+        this.tween.update(now);
+    }
+
+    public addTween(tween: Tween) {
+        this.tween = tween;
+    }
+
+    setPositionUpdated(): void {
+        this.positionUpdated = true;
+    }
+
+    requestPositionUpdate(): void {
+        this.positionUpdated = false;
+    }
+
+    public needPositionUpdate(): boolean {
+        return !this.positionUpdated;
+    }
+
+    public setPosition(position: IVector3D): void {
+        this._currentPosition = position;
+        this.requestPositionUpdate();
+    }
+
+    public updatePosition(stageOffset: Point): void {
+        this.position.set(stageOffset.x + this._currentPosition.x + this.getXOffset(), stageOffset.y + this._currentPosition.y + this.getYOffset());
+        this.zIndex = this._currentPosition.z;
+        this.setPositionUpdated();
+        this.updateBounds();
+    }
+
+    getBounds() {
+        return this.bounds;
+    }
+
+    getCurrentPosition(): IVector3D {
+        return this._currentPosition;
     }
 
     protected getTextureLink(): string {
         return null;
     }
 
-    public dispose(): void {
-    }
-
     public updateBounds(): void {
         this.bounds = new Rectangle(this.position.x, this.position.y, this.texture.width, this.texture.height);
-    }
-
-    public updateFrame(): void {
-    }
-
-    public updatePosition(stageOffset: Point): void {
-        this.position.set(stageOffset.x + this.currentPosition.x, stageOffset.y + this.currentPosition.y);
-        this.zIndex = this.currentPosition.z;
-        this.positionUpdate = false;
-        this.updateBounds();
-    }
-
-    public update(now: number): void {
-        this.tween.update(now);
-    }
-
-    public addTween(tween: Tween) {
-        this.tween = tween;
     }
 
     public checkBounds(bounds: Rectangle): void {
@@ -117,8 +152,7 @@ export class Graphic extends Sprite implements IGraphic {
         if (baseTex.hitMap !== undefined) return;
         if (!baseTex.resource) return;
 
-        let canvas = null;
-        let context = null;
+        let canvas, context;
         //@ts-ignore
         if (baseTex.resource.source instanceof Image) {
             canvas = document.createElement('canvas');
@@ -148,12 +182,22 @@ export class Graphic extends Sprite implements IGraphic {
         baseTex.hitMap = hitMap;
     }
 
-    public setPosition(position: IVector3D): void {
-        this.currentPosition = position;
-        this.positionUpdate = true;
-    }
-
     public getEventCategory(): EventCategory {
         return EventCategory.NONE;
+    }
+
+    public dispose(): void {
+    }
+
+    get currentPosition(): IVector3D {
+        return this._currentPosition;
+    }
+
+    getXOffset(): number {
+        return 0;
+    }
+
+    getYOffset(): number {
+        return 0;
     }
 }
