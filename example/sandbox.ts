@@ -53,7 +53,7 @@ function addNewFigure(figure: string, position: IVector3D) {
     const avatar = sandbox.avatarModule.buildFromFigure('hd-180-1.ch-255-66.lg-280-110.sh-305-62.ha-3140-110.hr-828-61');
     avatar.setPosition(position);
     avatar.updateDirection(2);
-    avatar.updatePosture(AvatarPosture.POSTURE_LAY);
+    avatar.updatePosture(AvatarPosture.POSTURE_STAND);
 
     sandbox.stage.addChild(avatar);
     //
@@ -290,7 +290,7 @@ sandbox.init()
         ];
         //
         for (let i = 0; i < 1; i++) {
-            addNewFigure(figures[Math.random() * figures.length | 0], PositionComputer.getObjectScreenPosition(new Vector3d(2, 1, 2), ObjectType.AVATAR));
+            addNewFigure(figures[Math.random() * figures.length | 0], PositionComputer.getObjectScreenPosition(new Vector3d(1, 1, 2), ObjectType.AVATAR));
         }
         //
         // addNewFigure(figures[8], new Vector3d(
@@ -301,3 +301,10 @@ sandbox.init()
 
         console.log('Children count', sandbox.stage.children.length);
     });
+
+/**
+ * 1: prendre le body, le placer au centre
+ * 2: autout, deployer le cadre
+ *
+ * En faite, le cadre sera toujours le même, faut juste qu'il soit bien placé
+ */
