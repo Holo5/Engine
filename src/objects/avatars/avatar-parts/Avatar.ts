@@ -11,6 +11,7 @@ import { GeometryManager } from '../figure-data-manager/geometry/GeometryManager
 import { Graphic } from '../../../sprite/Graphic';
 import { IVector3D } from '@holo5/roombuilder';
 import { Rectangle, RenderTexture, Renderer } from 'pixi.js';
+import {DebugFilter} from "../../../debug/filters/DebugFilter";
 
 export class Avatar extends Graphic {
 
@@ -41,6 +42,10 @@ export class Avatar extends Graphic {
 
         this.anchor.set(0.5, 1);
         this.updateDirection(this.currentDirection);
+
+        this.avatarPartsContainer.filters = [
+            new DebugFilter(0x340012)
+        ];
     }
 
     setRenderer(renderer: Renderer) {
@@ -145,22 +150,12 @@ export class Avatar extends Graphic {
 
         if (this.textures[textName] === undefined) {
             this.textures[textName] = this.renderer.generateTexture(this.avatarPartsContainer, {
-                region: this.getTextureRegion(),
+                region: this.avatarPartsContainer.getBounds(),
             });
         }
 
+        console.log(this.avatarPartsContainer.getBounds());
+
         this.texture = this.textures[textName];
-    }
-
-    private getTextureRegion() {
-        if (this.currentPosture === AvatarPosture.POSTURE_LAY) {
-            return new Rectangle(-(GeometryData.sizes.horizontal.width) / 2, -GeometryData.sizes.horizontal.height + 15, 128, 80);
-        }
-
-        return new Rectangle(-13, -117, 90, 130);
-    }
-
-    getYOffset(): number {
-        return 32;
     }
 }

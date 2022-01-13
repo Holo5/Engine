@@ -46,9 +46,10 @@ export class AvatarModule {
                 return BaseFigureDataPart.fromValue(value);
             });
 
-        const expandedFigureDataParts: ExpandedFigureDataPart[] = this.figureDataManager.retrieveExpandedParts(baseFigureDataParts);
+        const expandedFigureDataParts: ExpandedFigureDataPart[] = []; // this.figureDataManager.retrieveExpandedParts(baseFigureDataParts);
 
-        expandedFigureDataParts.push(new ExpandedFigureDataPart('1', 'hh_human_body', 0, 'sd', false, AvatarPosture.POSTURE_STAND, '0'));
+        expandedFigureDataParts.push(new ExpandedFigureDataPart('1', 'hh_human_body', 0, 'bd', false, AvatarPosture.POSTURE_STAND, '0'));
+        // expandedFigureDataParts.push(new ExpandedFigureDataPart('1', 'hh_human_body', 1, 'hd', false, AvatarPosture.POSTURE_STAND, '0'));
         // expandedFigureDataParts.push(new ExpandedFigureDataPart('69', 'hh_human_item', 0, 'ri', false, AvatarGesture.GESTURE_CARRY));
         // expandedFigureDataParts.push(new ExpandedFigureDataPart('1', 'hh_human_item', 0, 'li', false, AvatarGesture.GESTURE_SIGNAL));
 
