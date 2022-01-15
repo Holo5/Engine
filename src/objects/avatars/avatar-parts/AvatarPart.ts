@@ -94,7 +94,7 @@ export class AvatarPart extends Graphic {
     }
 
     updateDirection(direction: number) {
-        if (this.expandedFigureDataPart.type === 'sd' && this.action != AvatarPosture.POSTURE_SIT) return;
+        if (this.getType() === 'sd' && this.action != AvatarPosture.POSTURE_SIT) return;
 
         this.direction = direction;
         this.requestToFindNewTexture();
