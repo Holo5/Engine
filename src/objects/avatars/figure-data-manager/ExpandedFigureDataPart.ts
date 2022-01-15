@@ -6,7 +6,7 @@ export class ExpandedFigureDataPart {
     public index: number;
     public type: string;
     public color: string | false;
-    public defaultDirection: string;
+    public defaultDirection: number;
     public defaultAction: string;
     public defaultVisible: boolean;
 
@@ -17,7 +17,7 @@ export class ExpandedFigureDataPart {
         type: string,
         color: string | false,
         defaultAction: string = AvatarPosture.POSTURE_STAND,
-        defaultDirection: string = '2',
+        defaultDirection: number = 2,
         defaultVisible: boolean = true,
     ) {
         this.id = id;
@@ -41,8 +41,8 @@ export class ExpandedFigureDataPart {
             this.index,
             this.type,
             this.color,
-            this.defaultDirection,
             this.defaultAction,
+            this.defaultDirection,
             this.defaultVisible,
         );
     }
