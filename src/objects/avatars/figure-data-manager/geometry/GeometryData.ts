@@ -2,11 +2,11 @@ import { Rectangle } from 'pixi.js';
 
 export const GeometryData = {
     sizes: {
-        vertical: new Rectangle(-12, -120, 90, 130),
+        vertical: new Rectangle(-12, -116, 90, 130),
         horizontal: new Rectangle(-60, -66, 128, 80),
     },
     offsets: {
-        vertical: { x: 0, y: 8 },
+        vertical: { x: 0, y: 12 },
         horizontal: { x: 22, y: 44 },
     },
     reversedDirection: [4, 5, 6],
