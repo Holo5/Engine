@@ -55,6 +55,7 @@ export class Avatar extends Graphic {
             this.addAvatarPart(avatarPart);
         });
 
+        // TODO put this function in avatarPartsContainer
         this.avatarPartsContainer.children.sort((a, b) => {
             return a.zIndex - b.zIndex;
         });
