@@ -54,12 +54,10 @@ function addNewFigure(figure: string, position: IVector3D) {
     avatar.setPosition(position);
     avatar.updateDirection(3);
     avatar.updatePosture(AvatarPosture.POSTURE_STAND);
+    avatar.updateLeftItem('12');
+    avatar.updateRightItem('61');
 
     sandbox.stage.addChild(avatar);
-
-    setTimeout(() => {
-        avatar.updateDirection(2).updatePosture(AvatarPosture.POSTURE_SIT);
-    }, 2000);
 }
 
 sandbox.init()

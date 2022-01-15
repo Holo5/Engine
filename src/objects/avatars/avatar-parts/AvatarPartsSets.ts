@@ -51,12 +51,12 @@ export class AvatarPartsSets {
 
         if (avatarPart.getType() === AvatarBodyPart.LEFT_HAND_ITEM) {
             avatarPart.visible = this.avatar.currentLeftItemId !== undefined && this.avatar.currentPosture !== AvatarPosture.POSTURE_LAY;
-            //avatarPart.updateExpandedFigureDataPart(avatarPart.expandedFigureDataPart.toAnotherId(this.avatar.currentLeftItemId));
+            avatarPart.updateExpandedFigureDataPart(avatarPart.expandedFigureDataPart.toAnotherId(this.avatar.currentLeftItemId));
         }
 
         if (avatarPart.getType() === AvatarBodyPart.RIGHT_HAND_ITEM) {
             avatarPart.visible = this.avatar.currentRightItemId !== undefined && this.avatar.currentPosture !== AvatarPosture.POSTURE_LAY;
-            //avatarPart.updateExpandedFigureDataPart(avatarPart.expandedFigureDataPart.toAnotherId(this.avatar.currentRightItemId));
+            avatarPart.updateExpandedFigureDataPart(avatarPart.expandedFigureDataPart.toAnotherId(this.avatar.currentRightItemId));
         }
 
         avatarPart.updateDirection(this.avatar.currentDirection);

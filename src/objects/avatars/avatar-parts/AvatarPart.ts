@@ -56,7 +56,6 @@ export class AvatarPart extends Graphic {
 
     public findTextures() {
         this.currentTextureName = `${this.expandedFigureDataPart.type}_${this.expandedFigureDataPart.id}_${this.action}_${this.direction}`;
-        console.log(this.currentTextureName);
         if (this.resource?.spritesheet?.animations[this.currentTextureName] !== undefined
             && this.resource?.spritesheet?.animations[this.currentTextureName][0] !== undefined) {
             this.textures = this.resource.spritesheet.animations[this.currentTextureName];
@@ -97,6 +96,13 @@ export class AvatarPart extends Graphic {
         if (this.getType() === 'sd' && this.action != AvatarPosture.POSTURE_SIT) return;
 
         this.direction = direction;
+        this.requestToFindNewTexture();
+    }
+
+    updateExpandedFigureDataPart(expandedFigureDataPart: ExpandedFigureDataPart) {
+        if (this.expandedFigureDataPart === expandedFigureDataPart) return;
+
+        this.expandedFigureDataPart = expandedFigureDataPart;
         this.requestToFindNewTexture();
     }
 

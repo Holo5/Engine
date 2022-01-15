@@ -1,4 +1,5 @@
 import { Avatar } from './avatar-parts/Avatar';
+import { AvatarGesture } from './enums/AvatarGesture';
 import { AvatarPosture } from './enums/AvatarPosture';
 import { BaseFigureDataPart } from './figure-data-manager/BaseFigureDataPart';
 import { Configuration } from '../../../example/conf';
@@ -46,12 +47,11 @@ export class AvatarModule {
                 return BaseFigureDataPart.fromValue(value);
             });
 
-        const expandedFigureDataParts: ExpandedFigureDataPart[] = []; // this.figureDataManager.retrieveExpandedParts(baseFigureDataParts);
+        const expandedFigureDataParts: ExpandedFigureDataPart[] = this.figureDataManager.retrieveExpandedParts(baseFigureDataParts);
 
         expandedFigureDataParts.push(new ExpandedFigureDataPart('1', 'hh_human_body', 0, 'sd', false, AvatarPosture.POSTURE_STAND, 0));
-        // expandedFigureDataParts.push(new ExpandedFigureDataPart('1', 'hh_human_body', 1, 'hd', false, AvatarPosture.POSTURE_STAND, '0'));
-        // expandedFigureDataParts.push(new ExpandedFigureDataPart('69', 'hh_human_item', 0, 'ri', false, AvatarGesture.GESTURE_CARRY));
-        // expandedFigureDataParts.push(new ExpandedFigureDataPart('1', 'hh_human_item', 0, 'li', false, AvatarGesture.GESTURE_SIGNAL));
+        expandedFigureDataParts.push(new ExpandedFigureDataPart('69', 'hh_human_item', 0, 'ri', false, AvatarGesture.GESTURE_CARRY));
+        expandedFigureDataParts.push(new ExpandedFigureDataPart('1', 'hh_human_item', 0, 'li', false, AvatarGesture.GESTURE_SIGNAL));
 
         const avatar = new Avatar(this.engine, this.geometryManager);
         avatar.setRenderer(this.engine.renderer);
