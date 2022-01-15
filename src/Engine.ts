@@ -5,7 +5,6 @@ import { IEngineOption } from './interfaces/IEngineOption';
 import { ItemModule } from './objects/items/ItemModule';
 import { MapModule } from './objects/map/MapModule';
 import { Matrix, Rectangle, Renderer, SCALE_MODES, settings } from 'pixi.js';
-import { PixiInspector } from './debug/inspector/PixiInspector';
 import { Stage } from './geometry/Stage';
 
 export class Engine {
@@ -51,7 +50,7 @@ export class Engine {
         this.mapModule = new MapModule(this);
         this.avatarModule = new AvatarModule(this);
 
-        new PixiInspector(this.stage);
+        // new PixiInspector(this.stage);
     }
 
     public async init() {
