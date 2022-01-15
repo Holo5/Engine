@@ -1,3 +1,4 @@
+import { AvatarGesture } from '../src/objects/avatars/enums/AvatarGesture';
 import { AvatarPosture } from '../src/objects/avatars/enums/AvatarPosture';
 import { Engine } from '../src/Engine';
 import {
@@ -52,19 +53,14 @@ const sandbox = new Engine({
 function addNewFigure(figure: string, position: IVector3D) {
     const avatar = sandbox.avatarModule.buildFromFigure('hd-180-1.ch-255-66.lg-280-110.sh-305-62.ha-3140-110.hr-828-61');
     avatar.setPosition(position);
-    avatar.updateDirection(2);
-    avatar.updatePosture(AvatarPosture.POSTURE_STAND);
+    avatar.updateDirection(3);
+    avatar.updatePosture(AvatarPosture.POSTURE_WALK);
 
     sandbox.stage.addChild(avatar);
-    //
-    // setTimeout(() => {
-    //
-    // }, 2000);
-    //
-    // setTimeout(() => {
-    //     avatar.updateGesture(AvatarGesture.GESTURE_SMILE);
-    //     avatar.updateDirection(4);
-    // }, 5000);
+
+    setTimeout(() => {
+        avatar.updateGesture(AvatarGesture.GESTURE_SMILE).updatePosture(AvatarPosture.POSTURE_SIT).updateDirection(3);
+    }, 2000);
 }
 
 sandbox.init()

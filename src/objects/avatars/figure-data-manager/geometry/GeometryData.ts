@@ -1,17 +1,13 @@
+import { Rectangle } from 'pixi.js';
+
 export const GeometryData = {
     sizes: {
-        vertical: {
-            width: 90,
-            height: 130,
-        },
-        sitting: {
-            width: 90,
-            height: 130,
-        },
-        horizontal: {
-            width: 128,
-            height: 80,
-        },
+        vertical: new Rectangle(-12, -120, 90, 130),
+        horizontal: new Rectangle(-60, -66, 128, 80),
+    },
+    offsets: {
+        vertical: { x: 0, y: 8 },
+        horizontal: { x: 22, y: 44 },
     },
     reversedDirection: [4, 5, 6],
     normalDirection: [2, 1, 0],

@@ -46,7 +46,7 @@ export class AvatarModule {
                 return BaseFigureDataPart.fromValue(value);
             });
 
-        const expandedFigureDataParts: ExpandedFigureDataPart[] = []; // this.figureDataManager.retrieveExpandedParts(baseFigureDataParts);
+        const expandedFigureDataParts: ExpandedFigureDataPart[] = this.figureDataManager.retrieveExpandedParts(baseFigureDataParts);
 
         expandedFigureDataParts.push(new ExpandedFigureDataPart('1', 'hh_human_body', 0, 'bd', false, AvatarPosture.POSTURE_STAND, '0'));
         // expandedFigureDataParts.push(new ExpandedFigureDataPart('1', 'hh_human_body', 1, 'hd', false, AvatarPosture.POSTURE_STAND, '0'));

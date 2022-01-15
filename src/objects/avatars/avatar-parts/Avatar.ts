@@ -9,14 +9,11 @@ import { ExpandedFigureDataPart } from '../figure-data-manager/ExpandedFigureDat
 import { GeometryData } from '../figure-data-manager/geometry/GeometryData';
 import { GeometryManager } from '../figure-data-manager/geometry/GeometryManager';
 import { Graphic } from '../../../sprite/Graphic';
-import { IVector3D } from '@holo5/roombuilder';
-import { Rectangle, RenderTexture, Renderer } from 'pixi.js';
-import {DebugFilter} from "../../../debug/filters/DebugFilter";
+import { RenderTexture, Renderer } from 'pixi.js';
 
 export class Avatar extends Graphic {
 
     public currentDirection: number = 2;
-    public currentDirectionOriginal: number = 2;
     public currentGesture: AvatarGesture = AvatarGesture.GESTURE_STAND;
     public currentPosture: AvatarPosture = AvatarPosture.POSTURE_STAND;
     public currentRightItemId: string;
@@ -43,9 +40,9 @@ export class Avatar extends Graphic {
         this.anchor.set(0.5, 1);
         this.updateDirection(this.currentDirection);
 
-        this.avatarPartsContainer.filters = [
-            new DebugFilter(0x340012)
-        ];
+        // this.filters = [
+        //     new DebugFilter(0x340012),
+        // ];
     }
 
     setRenderer(renderer: Renderer) {
@@ -92,25 +89,30 @@ export class Avatar extends Graphic {
     updateGesture(gesture: AvatarGesture) {
         this.currentGesture = gesture;
         this.updateAllAvatarParts();
+
+        return this;
     }
 
     updatePosture(posture: AvatarPosture) {
-        if (posture === this.currentPosture) return;
+        if (posture === this.currentPosture) return this;
 
         this.currentPosture = posture;
         this.updateAllAvatarParts();
+
+        return this;
     }
 
     updateDirection(direction: number) {
-        if (direction === this.currentDirectionOriginal) return;
+        if (direction === this.currentDirection) return this;
 
         const directionIndex = GeometryData.reversedDirection.indexOf(direction);
 
         this.scale.x = directionIndex !== -1 ? -1 : 1;
         this.currentDirection = GeometryData.normalDirection[directionIndex] !== undefined ? GeometryData.normalDirection[directionIndex] : direction;
-        this.currentDirectionOriginal = direction;
 
         this.updateAllAvatarParts();
+
+        return this;
     }
 
     needInitialization(): boolean {
@@ -126,10 +128,6 @@ export class Avatar extends Graphic {
         this.avatarPartsContainer.children.forEach((avatarPart) => {
             avatarPart.initialize(resourceManager);
         });
-    }
-
-    setPosition(position: IVector3D) {
-        super.setPosition(position);
     }
 
     needFrameUpdate(): boolean {
@@ -150,12 +148,20 @@ export class Avatar extends Graphic {
 
         if (this.textures[textName] === undefined) {
             this.textures[textName] = this.renderer.generateTexture(this.avatarPartsContainer, {
-                region: this.avatarPartsContainer.getBounds(),
+                region: this.currentPosture === AvatarPosture.POSTURE_LAY ? GeometryData.sizes.horizontal : GeometryData.sizes.vertical,
             });
         }
 
-        console.log(this.avatarPartsContainer.getBounds());
-
         this.texture = this.textures[textName];
+        this.requestPositionUpdate();
+    }
+
+
+    getYOffset(): number {
+        return this.currentPosture === AvatarPosture.POSTURE_LAY ? GeometryData.offsets.horizontal.y : GeometryData.offsets.vertical.y;
+    }
+
+    getXOffset(): number {
+        return this.currentPosture === AvatarPosture.POSTURE_LAY ? GeometryData.offsets.horizontal.x : GeometryData.offsets.vertical.x;
     }
 }
