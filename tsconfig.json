@@ -17,9 +17,6 @@
     "baseUrl": "src",
     "lib": ["es2015","DOM"],
     "module": "ES2020",
-    "types": [
-      "offscreencanvas"
-    ],
     "paths": {
       "src/*": ["src/*"],
       "mini-signals": [
