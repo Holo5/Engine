@@ -1,4 +1,4 @@
-![HOLO5](https://client.holo5.co/holo-logo.99959bf5.png)
+![HOLO5](https://cdn.discordapp.com/attachments/779124137758425099/783621567854805002/holo5_logo.png)
 # HOLO5 Engine
 
 Game engine from Holo5.
