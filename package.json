@@ -7,7 +7,7 @@
   "source": "src/Engine.ts",
   "scripts": {
     "watch": "parcel example/index.html",
-    "build": "parcel build example/index.html --no-cache",
+    "build": "parcel build example/index.html",
     "lint": "eslint --ext .js,.ts ./src --color",
     "check": "tsc --noEmit"
   },
