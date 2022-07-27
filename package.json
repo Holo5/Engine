@@ -5,8 +5,6 @@
   "license": "UNLICENSED",
   "author": "Pi-Bouf",
   "source": "src/Engine.ts",
-  "main": "dist/main.js",
-  "module": "dist/module.js",
   "scripts": {
     "watch": "parcel example/index.html",
     "build": "parcel build example/index.html",
