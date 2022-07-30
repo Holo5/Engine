@@ -6,11 +6,8 @@ import {
     ObjectType,
     PositionComputer,
     RoomGenerator,
-    Vector3d,
-    WallType,
 } from '@holo5/roombuilder';
 import { Tile } from '../src/objects/map/object/tile/Tile';
-import { Wall } from '../src/objects/map/object/wall/Wall';
 
 // @ts-ignore
 if (module.hot) {
@@ -77,36 +74,19 @@ sandbox.init()
         PositionComputer.setOffsets(0, 0);
         let roomGenerator = new RoomGenerator();
         let model =
-            'xxxxxxxxxxxxxxxxxxxxxxxxxxxxx\r' +
-            'x222222222222222222222222222x\r' +
-            'x222222222222222222222222222x\r' +
-            '2222222222222222222222222222x\r' +
-            'x222222222222222222222222222x\r' +
-            'x2222xxxxxx222222xxxxxxx2222x\r' +
-            'x2222xxxxxx111111xxxxxxx2222x\r' +
-            'x2222xx111111111111111xx2222x\r' +
-            'x2222xx111111111111111xx2222x\r' +
-            'x2222xx11xxx1111xxxx11xx2222x\r' +
-            'x2222xx11xxx0000xxxx11xx2222x\r' +
-            'x22222111x00000000xx11xx2222x\r' +
-            'x22222111x00000000xx11xx2222x\r' +
-            'x22222111x00000000xx11xx2222x\r' +
-            'x22222111x00000000xx11xx2222x\r' +
-            'x22222111x00000000xx11xx2222x\r' +
-            'x22222111x00000000xx11xx2222x\r' +
-            'x2222xx11xxxxxxxxxxx11xx2222x\r' +
-            'x2222xx11xxxxxxxxxxx11xx2222x\r' +
-            'x2222xx111111111111111xx2222x\r' +
-            'x2222xx111111111111111xx2222x\r' +
-            'x2222xxxxxxxxxxxxxxxxxxx2222x\r' +
-            'x2222xxxxxxxxxxxxxxxxxxx2222x\r' +
-            'x222222222222222222222222222x\r' +
-            'x222222222222222222222222222x\r' +
-            'x222222222222222222222222222x\r' +
-            'x222222222222222222222222222x\r' +
-            'xxxxxxxxxxxxxxxxxxxxxxxxxxxxx';
+            'xxxxxx\r' +
+            '000000\r' +
+            '000000\r' +
+            '000000';
+
+        model =
+            '2xxxxx\r' +
+            '222222\r' +
+            '111111\r' +
+            '000000';
 
         const room = roomGenerator.generateRoom(model);
+        console.log('Offsets', PositionComputer.offsetX, PositionComputer.offsetY);
 
         room.drawableTiles.forEach((drawableTile) => {
             if (drawableTile.floorType !== FloorType.BORDER_UNUSABLE) {
@@ -114,17 +94,24 @@ sandbox.init()
                 let tile = new Tile(tileTextureData.texture, drawableTile, tileTextureData.offset);
                 tile.setPosition(PositionComputer.getObjectScreenPosition(drawableTile.position, ObjectType.TILE));
 
+                console.log();
+                console.log(PositionComputer.getObjectScreenPosition(drawableTile.position, ObjectType.TILE));
+
+                console.log(drawableTile.position);
+
                 sandbox.stage.addChild(tile);
 
-                if (drawableTile.wallType !== WallType.NONE) {
-                    let wallTextureData = sandbox.mapModule.getWallTextureData('201', drawableTile, 2, drawableTile.wallHeight, 2);
-                    let wall = new Wall(wallTextureData.texture, drawableTile, wallTextureData.offset);
-                    wall.setPosition(PositionComputer.getObjectScreenPosition(drawableTile.position, ObjectType.WALL));
-
-                    sandbox.stage.addChild(wall);
-                }
+                // if (drawableTile.wallType !== WallType.NONE) {
+                //     let wallTextureData = sandbox.mapModule.getWallTextureData('201', drawableTile, 2, drawableTile.wallHeight, 2);
+                //     let wall = new Wall(wallTextureData.texture, drawableTile, wallTextureData.offset);
+                //     wall.setPosition(PositionComputer.getObjectScreenPosition(drawableTile.position, ObjectType.WALL));
+                //
+                //     sandbox.stage.addChild(wall);
+                // }
             }
         });
+
+        console.log('HELLO :D');
 
         // PositionComputer.setOffsets(0, 0);
         // let roomGenerator = new RoomGenerator();
@@ -283,7 +270,7 @@ sandbox.init()
         ];
         //
         for (let i = 0; i < 1; i++) {
-            addNewFigure(figures[Math.random() * figures.length | 0], PositionComputer.getObjectScreenPosition(new Vector3d(1, 1, 2), ObjectType.AVATAR));
+            // addNewFigure(figures[Math.random() * figures.length | 0], PositionComputer.getObjectScreenPosition(new Vector3d(1, 1, 2), ObjectType.AVATAR));
         }
         //
         // addNewFigure(figures[8], new Vector3d(
